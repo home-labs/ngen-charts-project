@@ -116,6 +116,46 @@
           }
         }
       }
+    },
+    "minimalist-ng-chart": {
+      "root": "projects/minimalist-ng-chart",
+      "sourceRoot": "projects/minimalist-ng-chart/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/minimalist-ng-chart/tsconfig.lib.json",
+            "project": "projects/minimalist-ng-chart/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/minimalist-ng-chart/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/minimalist-ng-chart/src/test.ts",
+            "tsConfig": "projects/minimalist-ng-chart/tsconfig.spec.json",
+            "karmaConfig": "projects/minimalist-ng-chart/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/minimalist-ng-chart/tsconfig.lib.json",
+              "projects/minimalist-ng-chart/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "minimalist-ng-chart-project"
