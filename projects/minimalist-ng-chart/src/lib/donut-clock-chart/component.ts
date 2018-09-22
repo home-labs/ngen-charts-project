@@ -18,16 +18,13 @@ export class DonutClockChartComponent {
     strokeWidth: string;
 
     @Input()
-    diameter: string;
-
-    @Input()
     ngClass: Object;
 
     @Input()
     percentualLength: number;
 
     sectorLength: number;
-    xyNumericValue: number;
+    xy: string;
 
     cx: string;
     cy: string;
@@ -50,19 +47,15 @@ export class DonutClockChartComponent {
     private resolveXY() {
 
         let
-            difference: number,
-            xyUnity: string = this.extractUnity(this.diameter),
-            strokeWidthNumericValue: number = parseFloat(this.strokeWidth);
+            rayAndStrokeDiff: number,
+            xyUnity: string = this.extractUnity(this.ray),
+            strokeValue: number = parseFloat(this.strokeWidth),
+            xy: number = 2 * this.rayNumericValue + strokeValue;
 
-        this.xyNumericValue = parseFloat(this.diameter);
+        this.xy = `${xy}${xyUnity}`;
 
-        if (strokeWidthNumericValue > this.rayNumericValue) {
-            difference = strokeWidthNumericValue - this.rayNumericValue;
-            this.xyNumericValue -= difference;
-            this.diameter = `${this.xyNumericValue}${xyUnity}`
-        }
-
-        this.cx = `${(this.xyNumericValue/2) - (difference/2)}${xyUnity}`;
+        rayAndStrokeDiff = strokeValue - this.rayNumericValue;
+        this.cx = `${(xy / 2) - (rayAndStrokeDiff / 2)}${xyUnity}`;
         this.cy = this.cx;
     }
 
