@@ -47,15 +47,12 @@ export class DonutClockChartComponent {
     private resolveXY() {
 
         let
-            rayAndStrokeDiff: number,
             xyUnity: string = this.extractUnity(this.ray),
             strokeValue: number = parseFloat(this.strokeWidth),
-            xy: number = 2 * this.rayNumericValue + strokeValue;
+            xy: number = (2 * this.rayNumericValue + strokeValue) + 1;
 
         this.xy = `${xy}${xyUnity}`;
-
-        rayAndStrokeDiff = strokeValue - this.rayNumericValue;
-        this.cx = `${(xy / 2) - (rayAndStrokeDiff / 2)}${xyUnity}`;
+        this.cx = `${(xy / 2)}${xyUnity}`;
         this.cy = this.cx;
     }
 
