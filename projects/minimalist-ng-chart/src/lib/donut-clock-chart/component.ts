@@ -45,7 +45,6 @@ export class DonutClockChartComponent {
     }
 
     private resolveXY() {
-
         let
             xyUnity: string = this.extractUnity(this.ray),
             strokeValue: number = parseFloat(this.strokeWidth),
@@ -57,7 +56,11 @@ export class DonutClockChartComponent {
     }
 
     private extractUnity(value: string = 'px'): string {
-        return '';
+        const
+            pattern: RegExp = /[a-z]+/,
+            match = value.match(pattern);
+
+        return match[0]
     }
 
 }
