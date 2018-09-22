@@ -1,6 +1,7 @@
 import {
     Component,
-    Input
+    Input,
+    OnInit
 } from '@angular/core';
 
 
@@ -9,7 +10,7 @@ import {
     templateUrl: './template.html',
     styleUrls: ['./style.sass']
 })
-export class DonutClockChartComponent {
+export class DonutClockChartComponent implements OnInit {
 
     @Input()
     ray: string;
@@ -18,41 +19,43 @@ export class DonutClockChartComponent {
     strokeWidth: string;
 
     @Input()
-    classMap: Object = {};
-
-    @Input()
     percentualLength: number;
 
-    sectorLength: number;
-    xy: string;
+    @Input()
+    classMap: Object = {};
 
-    cx: string;
-    cy: string;
+    circumferenceLength: number;
+
+    // a service can changes the value of that by a event
+    sectorLength: number;
+
+    xy: string;
+    cxy: string;
 
     private rayNumericValue: number
-    private circumferenceLength: number;
 
-    construct() {
+    constructor() { }
+
+    ngOnInit() {
         let
             diameter: number;
 
         this.rayNumericValue = parseFloat(this.ray);
         diameter = 2 * this.rayNumericValue;
         this.circumferenceLength = Math.PI * diameter;
-        this.sectorLength = this.circumferenceLength * (this.percentualLength/100);
+        this.sectorLength = this.circumferenceLength * (this.percentualLength / 100);
 
-        this.resolveXY();
+        this.resolveLength();
     }
 
-    private resolveXY() {
+    private resolveLength() {
         let
             xyUnity: string = this.extractUnity(this.ray),
             strokeValue: number = parseFloat(this.strokeWidth),
             xy: number = (2 * this.rayNumericValue + strokeValue) + 1;
 
         this.xy = `${xy}${xyUnity}`;
-        this.cx = `${(xy / 2)}${xyUnity}`;
-        this.cy = this.cx;
+        this.cxy = `${(xy / 2)}${xyUnity}`;
     }
 
     private extractUnity(value: string = 'px'): string {

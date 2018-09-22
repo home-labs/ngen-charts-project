@@ -1,14 +1,14 @@
 <svg
-  width="xy"
-  height="xy"
+  [attr.width]="xy"
+  [attr.height]="xy"
 >
 
   <circle
-    cx="cx"
-    cy="cy"
-    r="ray"
-    stroke-width="strokeWidth"
-    stroke-dasharray="sectorLength circumferenceLength"
+    [attr.cx]="cxy"
+    [attr.cy]="cxy"
+    [attr.r]="ray"
+    [attr.stroke-width]="strokeWidth"
+    [attr.stroke-dasharray]="[sectorLength, circumferenceLength]"
     [ngClass]="classMap"
   />
 
