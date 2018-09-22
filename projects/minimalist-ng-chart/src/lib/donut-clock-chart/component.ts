@@ -18,7 +18,7 @@ export class DonutClockChartComponent {
     strokeWidth: string;
 
     @Input()
-    ngClass: Object;
+    classMap: Object = {};
 
     @Input()
     percentualLength: number;
