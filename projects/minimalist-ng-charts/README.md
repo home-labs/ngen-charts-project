@@ -29,13 +29,13 @@ export class MyModule() { }
 
 ```html
 <app-donut-clock-chart
-  [classMap]=" {
+  [percentualLength]="<number>"
+  [ray]="'<value><unity>'"
+  [strokeWidth]="'<value><unity>'"
+  [circleNgClass]=" {
     'class-1': <true or false>,
     'class-2': <true or false>,
   }"
-  [ray]="'<value><unity>'"
-  [strokeWidth]="'<value><unity>'"
-  [percentualLength]="<number>"
 ></app-donut-clock-chart>
 ```
 
