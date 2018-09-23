@@ -2,7 +2,7 @@
   "name": "minimalist-ng-chart",
   "version": "1.0.0",
   "peerDependencies": {
-    "@angular/common": "^4.0.0",
-    "@angular/core": "^4.0.0"
+    "@angular/common": ">=4.0.0",
+    "@angular/core": ">=4.0.0"
   }
 }
