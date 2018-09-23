@@ -17,11 +17,11 @@
       "dom"
     ],
     "paths": {
-      "minimalist-ng-chart": [
-        "dist/minimalist-ng-chart"
+      "minimalist-ng-charts": [
+        "dist/minimalist-ng-charts"
       ],
-      "minimalist-ng-chart/*": [
-        "dist/minimalist-ng-chart/*"
+      "minimalist-ng-charts/*": [
+        "dist/minimalist-ng-charts/*"
       ]
     }
   }

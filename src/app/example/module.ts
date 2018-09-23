@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ExampleComponent } from './component';
 
-import { MinimalistNgChartModule } from 'minimalist-ng-chart';
+import { MinimalistNgChartModule } from 'minimalist-ng-charts';
 
 
 @NgModule({

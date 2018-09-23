@@ -1,5 +1,5 @@
 {
-  "name": "minimalist-ng-chart",
+  "name": "minimalist-ng-charts",
   "version": "1.0.0",
   "peerDependencies": {
     "@angular/common": ">=4.0.0",
