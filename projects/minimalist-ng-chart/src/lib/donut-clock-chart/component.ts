@@ -25,12 +25,9 @@ export class DonutClockChartComponent implements OnInit {
     classMap: Object = {};
 
     circumferenceLength: number;
-
-    // a service can changes the value of that by a event
-    sectorLength: number;
-
     xy: string;
     cxy: string;
+    sectorLength: number;
 
     private rayNumericValue: number
 
