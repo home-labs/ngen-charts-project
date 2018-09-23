@@ -22,7 +22,7 @@ export class DonutClockChartComponent implements OnInit {
     percentualLength: number;
 
     @Input()
-    classMap: Object = {};
+    ngClass: Object = {};
 
     circumferenceLength: number;
     xy: string;
