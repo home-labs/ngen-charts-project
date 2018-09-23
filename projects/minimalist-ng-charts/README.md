@@ -39,5 +39,3 @@ export class MyModule() { }
 ></app-donut-clock-chart>
 ```
 
-
-
