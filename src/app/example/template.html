@@ -1,8 +1,18 @@
-<app-donut-clock-chart
-  [percentualLength]="25"
+<app-donut-chart
   [ray]="'100px'"
   [strokeWidth]="'20px'"
-  [circleNgClass]=" {
-    'bigger-or-equal-0': true
-  }"
-></app-donut-clock-chart>
+  [sectors]="[
+    {
+      percentualLength: 25,
+      ngClass: {
+        green: true
+      }
+    },
+    {
+      percentualLength: 25,
+      ngClass: {
+        yellow: true
+      }
+    }
+  ]"
+></app-donut-chart>

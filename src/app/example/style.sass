@@ -1,10 +1,13 @@
 app-example:host
   display: block
 
-  ::ng-deep app-donut-clock-chart
+  ::ng-deep app-donut-chart
     svg
       transform: rotate(90deg)
 
       circle
-        &.bigger-or-equal-0
+        &.green
           stroke: green
+
+        &.yellow
+          stroke: yellow

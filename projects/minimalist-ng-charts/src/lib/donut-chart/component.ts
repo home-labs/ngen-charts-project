@@ -6,11 +6,11 @@ import {
 
 
 @Component({
-    selector: 'app-donut-clock-chart',
+    selector: 'app-donut-chart',
     templateUrl: './template.html',
     styleUrls: ['./style.sass']
 })
-export class DonutClockChartComponent implements OnInit {
+export class DonutChartComponent implements OnInit {
 
     @Input()
     ray: string;
@@ -19,10 +19,9 @@ export class DonutClockChartComponent implements OnInit {
     strokeWidth: string;
 
     @Input()
-    percentualLength: number;
+    sectors: Array<Object>;
 
-    @Input()
-    circleNgClass: Object = {};
+    sectorsData: Array<Object>;
 
     circumferenceLength: number;
     xy: string;
@@ -31,18 +30,44 @@ export class DonutClockChartComponent implements OnInit {
 
     private rayNumericValue: number
 
-    constructor() { }
+    constructor() {
+        this.sectorsData = [];
+    }
 
     ngOnInit() {
         let
+            lastOffset: number = 0,
+            lastLength: number = 0,
             diameter: number;
 
         this.rayNumericValue = parseFloat(this.ray);
         diameter = 2 * this.rayNumericValue;
         this.circumferenceLength = Math.PI * diameter;
-        this.sectorLength = this.circumferenceLength * (this.percentualLength / 100);
-
         this.resolveLength();
+
+        this.sectors.forEach(
+            (sector: Object) => {
+                const
+                    sectorData: Object = {};
+
+                if (sector.hasOwnProperty('ngClass')) {
+                    sectorData['ngClass'] = sector['ngClass'];
+                }
+
+                sectorData['length'] = this
+                    .calculatePercentageOfSector(sector['percentualLength']);
+                sectorData['offset'] = lastLength + lastOffset;
+
+                this.sectorsData.push(sectorData);
+
+                lastOffset = sectorData['offset'];
+                lastLength = sectorData['length'];
+            }
+        )
+    }
+
+    private calculatePercentageOfSector(percentualLength: number) {
+        return this.circumferenceLength * (percentualLength / 100);
     }
 
     private resolveLength() {

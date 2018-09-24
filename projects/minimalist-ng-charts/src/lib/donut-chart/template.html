@@ -1,0 +1,16 @@
+<svg
+  [attr.width]="xy"
+  [attr.height]="xy"
+>
+
+  <circle *ngFor="let sector of sectorsData"
+    [attr.cx]="cxy"
+    [attr.cy]="cxy"
+    [attr.r]="ray"
+    [attr.stroke-width]="strokeWidth"
+    [attr.stroke-dasharray]="[sector.length, circumferenceLength]"
+    [attr.stroke-dashoffset]=-sector.offset
+    [ngClass]=sector?.ngClass
+  />
+
+</svg>
