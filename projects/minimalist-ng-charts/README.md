@@ -25,17 +25,25 @@ export class MyModule() { }
 
 ## Charts
 
-### Donut Clock
+### Donut
 
 ```html
-<app-donut-clock-chart
+<app-donut-chart
   [percentualLength]="<number>"
   [ray]="'<value><unity>'"
   [strokeWidth]="'<value><unity>'"
-  [circleNgClass]=" {
-    'class-1': <true or false>,
-    'class-2': <true or false>,
-  }"
-></app-donut-clock-chart>
+  [sectors]="[
+    {
+      percentualLength: 50,
+      ngClass: {
+        class-1: <true or false>,
+        class-2: <true or false>
+      }
+    },
+    {
+      percentualLength: 50
+    }
+  ]"
+></app-donut-chart>
 ```
 
