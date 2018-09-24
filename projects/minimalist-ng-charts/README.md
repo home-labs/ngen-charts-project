@@ -29,7 +29,6 @@ export class MyModule() { }
 
 ```html
 <app-donut-chart
-  [percentualLength]="<number>"
   [ray]="'<value><unity>'"
   [strokeWidth]="'<value><unity>'"
   [sectors]="[
