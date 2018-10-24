@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ExampleComponent } from './component';
 
-import { MinimalistNgChartsModule } from 'minimalist-ng-charts';
+import { MinimalistNgChartsModule } from '../../../projects/minimalist-ng-charts/src/public_api';
 
 
 @NgModule({
