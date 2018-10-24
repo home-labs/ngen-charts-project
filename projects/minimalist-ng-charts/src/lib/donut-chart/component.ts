@@ -70,7 +70,7 @@ export class DonutChartComponent implements OnInit {
         const
             length: number = this.circumferenceLength * (percentualLength / 100);
 
-        return length < 100 ? length : this.circumferenceLength;
+        return length < this.circumferenceLength ? length : this.circumferenceLength;
     }
 
     private resolvesLength() {
