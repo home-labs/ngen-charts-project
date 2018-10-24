@@ -43,7 +43,7 @@ export class DonutChartComponent implements OnInit {
         this.rayNumericValue = parseFloat(this.ray);
         diameter = 2 * this.rayNumericValue;
         this.circumferenceLength = Math.PI * diameter;
-        this.resolveLength();
+        this.resolvesLength();
 
         this.sectors.forEach(
             (sector: Object) => {
@@ -55,7 +55,7 @@ export class DonutChartComponent implements OnInit {
                 }
 
                 sectorData['length'] = this
-                    .calculatePercentageOfSector(sector['percentualLength']);
+                    .calculatesPercentageOfSector(sector['percentualLength']);
                 sectorData['offset'] = lastLength + lastOffset;
 
                 this.sectorsData.push(sectorData);
@@ -66,13 +66,16 @@ export class DonutChartComponent implements OnInit {
         )
     }
 
-    private calculatePercentageOfSector(percentualLength: number) {
-        return this.circumferenceLength * (percentualLength / 100);
+    private calculatesPercentageOfSector(percentualLength: number): number {
+        const
+            percentageLength: number = this.circumferenceLength * (percentualLength / 100);
+
+        return length < 100 ? percentageLength : 100;
     }
 
-    private resolveLength() {
+    private resolvesLength() {
         let
-            xyUnity: string = this.extractUnity(this.ray),
+            xyUnity: string = this.extractsUnity(this.ray),
             strokeValue: number = parseFloat(this.strokeWidth),
             xy: number = (2 * this.rayNumericValue + strokeValue) + 1;
 
@@ -80,7 +83,7 @@ export class DonutChartComponent implements OnInit {
         this.cxy = `${(xy / 2)}${xyUnity}`;
     }
 
-    private extractUnity(value: string = 'px'): string {
+    private extractsUnity(value: string = 'px'): string {
         const
             pattern: RegExp = /[a-z]+/,
             match = value.match(pattern);
