@@ -1,0 +1,1 @@
+export { MinimalistNgChartsModule } from './module';
