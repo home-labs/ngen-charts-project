@@ -3,16 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-import { AppRoutingModule } from './app-routing.module';
-
-import { ExampleModule } from './example';
+import { MinimalistNgChartsModule } from '../../projects/minimalist-ng-charts/src/public_api';
 
 
 @NgModule({
     imports: [
         BrowserModule,
-        AppRoutingModule,
-        ExampleModule
+
+        MinimalistNgChartsModule
     ],
     declarations: [
         AppComponent

@@ -3,7 +3,26 @@
 </header>
 <main>
   <section>
-    <router-outlet></router-outlet>
+
+    <app-donut-chart
+      [ray]="'90px'"
+      [strokeWidth]="'30px'"
+      [sectors]="[
+        {
+          percentageLength: 50,
+          ngClass: {
+            green: true
+          }
+        }
+        ,{
+          percentageLength: 50,
+          ngClass: {
+            yellow: true
+          }
+        }
+      ]"
+    ></app-donut-chart>
+
   </section>
 </main>
 <!-- <footer></footer> -->
