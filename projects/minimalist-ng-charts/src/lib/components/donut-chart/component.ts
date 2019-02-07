@@ -4,9 +4,12 @@ import {
     OnInit
 } from '@angular/core';
 
+import '../../extensions/number';
+
+
 declare interface Sector {
-    percentageLength: number;
     value: number;
+    percentageLength: number;
     ngClass?: Object;
 }
 
@@ -32,12 +35,21 @@ export class DonutChartComponent implements OnInit {
     circumferenceLength: number;
     diameter: string;
     calculatedRay: string;
-    sectorLength: number;
 
     private numericInputRay: number
+    private sum: number;
 
     constructor() {
         this.sectorsData = [];
+        this.sum = 0;
+    }
+
+    calculatesSum() {
+        this.sectors.forEach(
+            (sector: Sector) => {
+                this.sum += sector.value;
+            }
+        )
     }
 
     ngOnInit() {
@@ -50,18 +62,28 @@ export class DonutChartComponent implements OnInit {
         diameter = 2 * this.numericInputRay;
         this.circumferenceLength = Math.PI * diameter;
         this.resolvesLength();
+        this.calculatesSum();
 
         this.sectors.forEach(
             (sector: Sector) => {
                 const
-                    sectorData: Object = {};
+                    sectorData: Object = {},
+                    percentageLength: number = this.sum.percentageRelativeTo(sector.value);
 
                 if (sector.hasOwnProperty('ngClass')) {
                     sectorData['ngClass'] = sector.ngClass;
                 }
 
                 sectorData['length'] = this
+                    // 376.9911184307752, 565.4866776461628
+                    // 188.4955592153876, 565.4866776461628
+                    // - 376.9911184307752
+
+                    // 395.8406743523139, 565.4866776461628
+                    // 169.64600329384882, 565.4866776461628
+                    // - 395.8406743523139
                     .calculatesSectorLength(sector.percentageLength);
+                    // .calculatesSectorLength(percentageLength);
                 sectorData['offset'] = lastLength + lastOffset;
 
                 this.sectorsData.push(sectorData);
@@ -69,7 +91,9 @@ export class DonutChartComponent implements OnInit {
                 lastOffset = sectorData['offset'];
                 lastLength = sectorData['length'];
             }
-        )
+        );
+
+        console.log(this.sectorsData);
     }
 
     private calculatesSectorLength(percentageLength: number): number {
