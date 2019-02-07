@@ -4,6 +4,12 @@ import {
     OnInit
 } from '@angular/core';
 
+declare interface Sector {
+    percentageLength: number;
+    value: number;
+    ngClass?: Object;
+}
+
 
 @Component({
     selector: 'app-donut-chart',
@@ -46,16 +52,16 @@ export class DonutChartComponent implements OnInit {
         this.resolvesLength();
 
         this.sectors.forEach(
-            (sector: Object) => {
+            (sector: Sector) => {
                 const
                     sectorData: Object = {};
 
                 if (sector.hasOwnProperty('ngClass')) {
-                    sectorData['ngClass'] = sector['ngClass'];
+                    sectorData['ngClass'] = sector.ngClass;
                 }
 
                 sectorData['length'] = this
-                    .calculatesSectorLength(sector['percentageLength']);
+                    .calculatesSectorLength(sector.percentageLength);
                 sectorData['offset'] = lastLength + lastOffset;
 
                 this.sectorsData.push(sectorData);
