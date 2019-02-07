@@ -1,19 +1,21 @@
-app-root:host
-  display: block
+app-root
+  &:host
 
-  main
-    width: 800px
+    display: block
+    text-align: center
+    padding: 25px
 
     section
       padding: 25px
 
-  ::ng-deep app-donut-chart
-    svg
-      transform: rotate(90deg)
+    ::ng-deep app-donut-chart
+      svg
+        transform: rotate(90deg)
+        background: black
 
-      circle
-        &.green
-          stroke: green
+        circle
+          &.green
+            stroke: green
 
-        &.yellow
-          stroke: yellow
+          &.yellow
+            stroke: yellow

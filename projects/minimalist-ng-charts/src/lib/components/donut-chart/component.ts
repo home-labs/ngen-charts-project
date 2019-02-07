@@ -24,11 +24,11 @@ export class DonutChartComponent implements OnInit {
     sectorsData: Array<Object>;
 
     circumferenceLength: number;
-    xy: string;
-    cxy: string;
+    diameter: string;
+    calculatedRay: string;
     sectorLength: number;
 
-    private rayNumericValue: number
+    private numericInputRay: number
 
     constructor() {
         this.sectorsData = [];
@@ -40,8 +40,8 @@ export class DonutChartComponent implements OnInit {
             lastLength: number = 0,
             diameter: number;
 
-        this.rayNumericValue = parseFloat(this.ray);
-        diameter = 2 * this.rayNumericValue;
+        this.numericInputRay = parseFloat(this.ray);
+        diameter = 2 * this.numericInputRay;
         this.circumferenceLength = Math.PI * diameter;
         this.resolvesLength();
 
@@ -81,12 +81,13 @@ export class DonutChartComponent implements OnInit {
 
     private resolvesLength() {
         let
-            xyUnity: string = this.extractsUnity(this.ray),
-            strokeValue: number = parseFloat(this.strokeWidth),
-            xy: number = (2 * this.rayNumericValue + strokeValue) + 1;
+            rayUnity: string = this.extractsUnity(this.ray),
+            strokeWidth: number = parseFloat(this.strokeWidth),
 
-        this.xy = `${xy}${xyUnity}`;
-        this.cxy = `${(xy / 2)}${xyUnity}`;
+            diameter: number = (2 * this.numericInputRay) + strokeWidth;
+
+        this.diameter = `${diameter}${rayUnity}`;
+        this.calculatedRay = `${(diameter / 2)}${rayUnity}`;
     }
 
     private extractsUnity(value: string = 'px'): string {
