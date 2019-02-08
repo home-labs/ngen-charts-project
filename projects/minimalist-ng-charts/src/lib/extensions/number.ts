@@ -4,7 +4,7 @@ declare interface Number {
 
     isOdd(): number;
 
-    round(decimalPlacesCount: number): number;
+    round(decimalPlacesCount?: number): number;
 
 }
 
