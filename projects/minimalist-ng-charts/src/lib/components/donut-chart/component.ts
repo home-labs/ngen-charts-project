@@ -29,9 +29,6 @@ export class DonutChartComponent implements OnInit {
     @Input()
     sectors: Array<Object>;
 
-    @Input()
-    total: number;
-
     sectorsData: Array<Object>;
 
     circumferenceLength: number;
