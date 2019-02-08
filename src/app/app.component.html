@@ -3,15 +3,38 @@
   [strokeWidth]="'30px'"
   [sectors]="[
     {
-      value: 100,
-      percentageLength: 66.66666666666667,
+      value: 30,
       ngClass: {
         green: true
       }
     }
     ,{
-      value: 50,
-      percentageLength: 33.33333,
+      value: 30,
+      ngClass: {
+        yellow: true
+      }
+    }
+    ,{
+      value: 30,
+      ngClass: {
+        red: true
+      }
+    }
+  ]"
+></app-donut-chart>
+
+<app-donut-chart
+  [ray]="'90px'"
+  [strokeWidth]="'30px'"
+  [sectors]="[
+    {
+      value: 9,
+      ngClass: {
+        green: true
+      }
+    }
+    ,{
+      value: total - 9,
       ngClass: {
         yellow: true
       }

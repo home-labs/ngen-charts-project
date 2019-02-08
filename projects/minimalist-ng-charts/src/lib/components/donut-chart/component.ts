@@ -9,7 +9,6 @@ import '../../extensions/number';
 
 declare interface Sector {
     value: number;
-    percentageLength: number;
     ngClass?: Object;
 }
 
@@ -30,6 +29,9 @@ export class DonutChartComponent implements OnInit {
     @Input()
     sectors: Array<Object>;
 
+    @Input()
+    total: number;
+
     sectorsData: Array<Object>;
 
     circumferenceLength: number;
@@ -49,7 +51,7 @@ export class DonutChartComponent implements OnInit {
             (sector: Sector) => {
                 this.sum += sector.value;
             }
-        )
+        );
     }
 
     ngOnInit() {
@@ -60,7 +62,7 @@ export class DonutChartComponent implements OnInit {
 
         this.numericInputRay = parseFloat(this.ray);
         diameter = 2 * this.numericInputRay;
-        this.circumferenceLength = Math.PI * diameter;
+        this.circumferenceLength = (Math.PI * diameter).roundDecimalPiece(2);
         this.resolvesLength();
         this.calculatesSum();
 
@@ -74,18 +76,9 @@ export class DonutChartComponent implements OnInit {
                     sectorData['ngClass'] = sector.ngClass;
                 }
 
-                console.log(percentageLength);
-
                 sectorData['length'] = this
-                    // 376.61412731234435,565.4866776461628
-                    // 188.87255033381834,565.4866776461628
-                    // - 376.61412731234435
+                    .calculatesSectorLength(percentageLength);
 
-                    // 395.8406743523139, 565.4866776461628
-                    // 169.64600329384882, 565.4866776461628
-                    // - 395.8406743523139
-                    .calculatesSectorLength(sector.percentageLength);
-                    // .calculatesSectorLength(percentageLength);
                 sectorData['offset'] = lastLength + lastOffset;
 
                 this.sectorsData.push(sectorData);
@@ -94,8 +87,6 @@ export class DonutChartComponent implements OnInit {
                 lastLength = sectorData['length'];
             }
         );
-
-        console.log(this.sectorsData);
     }
 
     private calculatesSectorLength(percentageLength: number): number {
@@ -108,7 +99,7 @@ export class DonutChartComponent implements OnInit {
             return 0;
         }
 
-        return length;
+        return length.roundDecimalPiece(2);
     }
 
     private resolvesLength() {
