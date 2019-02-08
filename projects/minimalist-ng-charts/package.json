@@ -1,6 +1,6 @@
 {
   "name": "minimalist-ng-charts",
-  "version": "2.0.0-rc.2",
+  "version": "2.0.0-rc.3",
   "peerDependencies": {
     "@angular/common": ">=4.0.0",
     "@angular/core": ">=4.0.0"
