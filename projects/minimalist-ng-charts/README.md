@@ -33,15 +33,16 @@ export class MyModule() { }
   [strokeWidth]="'<value><unity>'"
   [sectors]="[
     {
-      percentageLength: 50,
+      value: 9,
       ngClass: {
         class-1: <true or false>,
         class-2: <true or false>
       }
     },
     {
-      percentageLength: 50
+      value: 3
     }
   ]"
 ></app-donut-chart>
 ```
+
