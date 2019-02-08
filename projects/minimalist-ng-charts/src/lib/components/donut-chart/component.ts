@@ -59,7 +59,7 @@ export class DonutChartComponent implements OnInit {
 
         this.numericInputRay = parseFloat(this.ray);
         diameter = 2 * this.numericInputRay;
-        this.circumferenceLength = (Math.PI * diameter).roundDecimalPiece(2);
+        this.circumferenceLength = (Math.PI * diameter).round(2);
         this.resolvesLength();
         this.calculatesSum();
 
@@ -96,7 +96,7 @@ export class DonutChartComponent implements OnInit {
             return 0;
         }
 
-        return length.roundDecimalPiece(2);
+        return length.round(2);
     }
 
     private resolvesLength() {
