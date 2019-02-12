@@ -21,7 +21,7 @@ declare interface Sector {
 export class DonutChartComponent implements OnInit {
 
     @Input()
-    ray: string;
+    radius: string;
 
     @Input()
     strokeWidth: string;
@@ -57,9 +57,9 @@ export class DonutChartComponent implements OnInit {
             lastLength: number = 0,
             diameter: number;
 
-        this.numericInputRay = parseFloat(this.ray);
+        this.numericInputRay = parseFloat(this.radius);
         diameter = 2 * this.numericInputRay;
-        this.circumferenceLength = (Math.PI * diameter).round(5);
+        this.circumferenceLength = (Math.PI * diameter).round(4);
         this.resolvesLength();
         this.calculatesSum();
 
@@ -96,18 +96,18 @@ export class DonutChartComponent implements OnInit {
             return 0;
         }
 
-        return length.round(5);
+        return length.round(4);
     }
 
     private resolvesLength() {
         let
-            rayUnity: string = this.extractsUnity(this.ray),
+            radiusUnity: string = this.extractsUnity(this.radius),
             strokeWidth: number = parseFloat(this.strokeWidth),
 
             diameter: number = (2 * this.numericInputRay) + strokeWidth;
 
-        this.diameter = `${diameter}${rayUnity}`;
-        this.calculatedRay = `${(diameter / 2)}${rayUnity}`;
+        this.diameter = `${diameter}${radiusUnity}`;
+        this.calculatedRay = `${(diameter / 2)}${radiusUnity}`;
     }
 
     private extractsUnity(value: string = 'px'): string {
