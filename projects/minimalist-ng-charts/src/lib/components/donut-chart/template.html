@@ -3,7 +3,7 @@
   [attr.width]="diameter"
   [attr.height]="diameter"
 >
-  <circle
+  <circle *ngFor="let sector of sectorsData"
     [attr.r]="radius"
     [attr.cx]="calculatedRadius"
     [attr.cy]="calculatedRadius"
