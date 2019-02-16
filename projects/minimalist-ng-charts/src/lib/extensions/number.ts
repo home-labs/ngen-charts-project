@@ -1,6 +1,8 @@
 declare interface Number {
 
-    percentageRelativeTo(value: number): number;
+    calculatesPercentageTo(value: number, oneHundredPercentEquivalence?: number): number;
+
+    calculatesValueToPercentage(value: number, oneHundredPercentEquivalence?: number): number;
 
     isOdd(): number;
 
@@ -8,11 +10,48 @@ declare interface Number {
 
 }
 
-Number.prototype.percentageRelativeTo = function (value: number): number {
+// 360 -- 100 -- 500
+// x   -- y%  -- 50
 
-    return (value * 100) / this;
+// os valores informados não estarão em ângulo, mas representarão parte de um todo. O todo é 1, 100, ou, em ângulo de uma circunferência, 360
 
-};
+// 360 -- 500
+// x   -- 50
+
+// this = 500
+// 500x = 360 * 50 -> x = (50 * 360)/500 -> x = 36°
+
+// usando porcentagem como meio
+// 100 -- 500
+// y%  -- 50
+// 500y = 5000 -> y (100 * 50)/500  -> y = 5000/500 -> y = 10%
+
+// 360 -- 100
+// x   -- 10%
+
+// 100x = 3600 -> x = 3600 / 100 -> x = 36°
+
+
+// this = 5700
+// (570 * 100) / 5700
+// 10
+
+// this = 100
+// (10 * 5700) / 100
+// 570
+
+
+Number.prototype.calculatesPercentageTo = function (value: number, oneHundredPercentEquivalence: number = 100): number {
+
+    return (value * oneHundredPercentEquivalence) / this;
+
+}
+
+Number.prototype.calculatesValueToPercentage = function (value: number, oneHundredPercentEquivalence: number = 100): number {
+
+    return (value * this) / oneHundredPercentEquivalence;
+
+}
 
 Number.prototype.isOdd = function (): number {
 
@@ -20,7 +59,7 @@ Number.prototype.isOdd = function (): number {
 
 }
 
-Number.prototype.round = function(decimalPlacesCount: number = 0): number {
+Number.prototype.round = function (decimalPlacesCount: number = 0): number {
 
     let
         pieces: Array<string>,
@@ -34,7 +73,7 @@ Number.prototype.round = function(decimalPlacesCount: number = 0): number {
         result: string,
         zerosCount: number = 0,
         zeros: string = ''
-    ;
+        ;
 
     if (!decimalPlacesCount) {
         return Math.round(this);
@@ -49,24 +88,29 @@ Number.prototype.round = function(decimalPlacesCount: number = 0): number {
 
     if (decimalPlacesCount < decimalPiece.length) {
 
-        nextNeighborsOfRight = parseInt(decimalPiece.slice(decimalPlacesCount + 1, decimalPiece.length)  || '0');
+        nextNeighborsOfRight = parseInt(decimalPiece
+            .slice(decimalPlacesCount + 1, decimalPiece.length) || '0');
 
-        decimalPiece2ChangeAsString = decimalPiece.slice(0, decimalPlacesCount);
+        decimalPiece2ChangeAsString = decimalPiece
+            .slice(0, decimalPlacesCount);
         oldDecimalFirstDigit = parseInt(decimalPiece2ChangeAsString[0]);
         decimalPiece2Change = parseInt(decimalPiece2ChangeAsString);
 
         if (parseInt(decimalPiece[decimalPlacesCount]) > 5 ||
             // according IBGE resolution number 886/66
             (parseInt(decimalPiece[decimalPlacesCount]) == 5 &&
-            (nextNeighborsOfRight > 0 ||
-             parseInt(decimalPiece[decimalPlacesCount - 1]).isOdd()))
-           ) {
+                (nextNeighborsOfRight > 0 ||
+                    parseInt(decimalPiece[decimalPlacesCount - 1]).isOdd()))
+        ) {
             decimalPiece2Change += 1;
 
             decimalFirstDigit = parseInt(`${decimalPiece2Change}`[0]);
 
-            if (decimalPiece2ChangeAsString.length > `${decimalPiece2Change}`.length) {
-                zerosCount = decimalPiece2ChangeAsString.length - `${decimalPiece2Change}`.length;
+            if (decimalPiece2ChangeAsString.length >
+                `${decimalPiece2Change}`.length
+            ) {
+                zerosCount = decimalPiece2ChangeAsString.length -
+                    `${decimalPiece2Change}`.length;
                 zeros = decimalPiece2ChangeAsString.slice(0, zerosCount);
             }
 

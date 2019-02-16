@@ -1,7 +1,9 @@
 import {
     Component,
     Input,
-    OnInit
+    OnInit,
+    // ViewChild,
+    // ElementRef
 } from '@angular/core';
 
 import '../../extensions/number';
@@ -10,6 +12,11 @@ import '../../extensions/number';
 declare interface Sector {
     value: number;
     ngClass?: Object;
+}
+
+declare interface Point {
+    x: number;
+    y: number;
 }
 
 
@@ -24,31 +31,28 @@ export class DonutChartComponent implements OnInit {
     radius: string;
 
     @Input()
-    strokeWidth: string;
+    borderWidth: string;
 
     @Input()
     sectors: Array<Object>;
+
+    // @ViewChild('svg')
+    // private svg: ElementRef;
+
+    // private _svg: SVGElement;
 
     sectorsData: Array<Object>;
 
     circumferenceLength: number;
     diameter: string;
-    calculatedRay: string;
+    calculatedRadius: string;
 
-    private numericInputRay: number
+    private numericInputRadius: number
     private sum: number;
 
     constructor() {
         this.sectorsData = [];
         this.sum = 0;
-    }
-
-    calculatesSum() {
-        this.sectors.forEach(
-            (sector: Sector) => {
-                this.sum += sector.value;
-            }
-        );
     }
 
     ngOnInit() {
@@ -57,8 +61,10 @@ export class DonutChartComponent implements OnInit {
             lastLength: number = 0,
             diameter: number;
 
-        this.numericInputRay = parseFloat(this.radius);
-        diameter = 2 * this.numericInputRay;
+        // this._svg = this.svg.nativeElement;
+
+        this.numericInputRadius = parseFloat(this.radius);
+        diameter = 2 * this.numericInputRadius;
         this.circumferenceLength = (Math.PI * diameter).round(4);
         this.resolvesLength();
         this.calculatesSum();
@@ -67,7 +73,7 @@ export class DonutChartComponent implements OnInit {
             (sector: Sector) => {
                 const
                     sectorData: Object = {},
-                    percentageLength: number = this.sum.percentageRelativeTo(sector.value);
+                    percentageLength: number = this.sum.calculatesPercentageTo(sector.value);
 
                 if (sector.hasOwnProperty('ngClass')) {
                     sectorData['ngClass'] = sector.ngClass;
@@ -82,6 +88,29 @@ export class DonutChartComponent implements OnInit {
 
                 lastOffset = sectorData['offset'];
                 lastLength = sectorData['length'];
+            }
+        );
+
+        // this.render();
+    }
+
+    // private render() {
+    //     let
+    //         circle: SVGCircleElement;
+
+    //     this.sectorsData.forEach(
+    //         (sector: Object) => {
+    //             circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+
+    //             console.log(circle.constructor);
+    //         }
+    //     );
+    // }
+
+    private calculatesSum() {
+        this.sectors.forEach(
+            (sector: Sector) => {
+                this.sum += sector.value;
             }
         );
     }
@@ -102,12 +131,12 @@ export class DonutChartComponent implements OnInit {
     private resolvesLength() {
         let
             radiusUnity: string = this.extractsUnity(this.radius),
-            strokeWidth: number = parseFloat(this.strokeWidth),
+            borderWidth: number = parseFloat(this.borderWidth),
 
-            diameter: number = (2 * this.numericInputRay) + strokeWidth;
+            diameter: number = (2 * this.numericInputRadius) + borderWidth;
 
         this.diameter = `${diameter}${radiusUnity}`;
-        this.calculatedRay = `${(diameter / 2)}${radiusUnity}`;
+        this.calculatedRadius = `${(diameter / 2)}${radiusUnity}`;
     }
 
     private extractsUnity(value: string = 'px'): string {

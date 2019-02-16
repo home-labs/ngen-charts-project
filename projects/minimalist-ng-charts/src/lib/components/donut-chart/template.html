@@ -1,16 +1,23 @@
 <svg
+  #svg
   [attr.width]="diameter"
   [attr.height]="diameter"
 >
-
-  <circle *ngFor="let sector of sectorsData"
+  <circle
     [attr.r]="radius"
-    [attr.cx]="calculatedRay"
-    [attr.cy]="calculatedRay"
-    [attr.stroke-width]="strokeWidth"
+    [attr.cx]="calculatedRadius"
+    [attr.cy]="calculatedRadius"
+    [attr.stroke-width]="borderWidth"
     [attr.stroke-dasharray]="[sector.length, circumferenceLength]"
     [attr.stroke-dashoffset]="-sector.offset"
     [ngClass]="sector?.ngClass"
   />
+
+  <!-- <path *ngFor="let sector of sectorsData"
+    [attr.d]="sector.path"
+  />
+  <path *ngFor="let border of borders"
+    [attr.d]="border"
+  /> -->
 
 </svg>
