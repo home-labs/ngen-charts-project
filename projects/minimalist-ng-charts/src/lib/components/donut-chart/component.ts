@@ -91,20 +91,28 @@ export class DonutChartComponent implements OnInit {
 
         this.diameter = `${diameter}${unity}`;
 
-        // the borders aren't considered to calculate the radius
-        this.calculatedExternalBorderRadius = `${(diameter -
-            numericInputStrokeWidth) / 2}${unity}`;
+        // only half of the outer borders are considered to width and height
+        this.calculatedExternalBorderRadius = `${
+            (
+                diameter - numericInputStrokeWidth
+            ) / 2}${unity}`;
 
-        this.calculatedRadius = `${(diameter - numericInputBorderWidth) /
-            2}${unity}`;
+        this.calculatedRadius = `${
+            (
+                diameter - (
+                    ((numericInputStrokeWidth - 0.1) * 2) +
+                    numericInputBorderWidth
+                )
+            ) / 2}${unity}`;
 
-        this.calculatedInternalBorderRadius = `${(diameter -
-            (numericInputBorderWidth * 2)) / 2}${unity}`;
-
-        // console.log(diameter);
-        // console.log(numericInputBorderWidth);
-        // console.log(numericInputStrokeWidth);
-        // console.log((diameter - (numericInputBorderWidth + (numericInputStrokeWidth * 2))) / 2);
+        this.calculatedInternalBorderRadius = `${
+            (
+                diameter - (
+                    // its own and 2 of outer
+                    (numericInputStrokeWidth * 3) +
+                    ((numericInputBorderWidth - 0.1) * 2)
+                )
+            ) / 2}${unity}`;
 
         calculatedDiameter = parseFloat(this.calculatedRadius) * 2;
         this.circumferenceLength = (Math.PI * calculatedDiameter).round(4);
