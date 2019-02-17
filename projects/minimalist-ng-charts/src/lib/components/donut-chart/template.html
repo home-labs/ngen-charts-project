@@ -18,7 +18,7 @@
 
   <circle
     *ngIf="strokeSettings.bindOn.includes('outer')"
-    class="outer-border"
+    class="outer-circumference-border"
     [attr.r]="calculatedExternalBorderRadius"
     [attr.stroke-width]="strokeWidth"
     [attr.cx]="radius"
@@ -27,18 +27,17 @@
 
   <circle
     *ngIf="strokeSettings.bindOn.includes('inner')"
-    class="inner-border"
+    class="inner-circumference-border"
     [attr.r]="calculatedInternalBorderRadius"
     [attr.stroke-width]="strokeWidth"
     [attr.cx]="radius"
     [attr.cy]="radius"
   />
 
-  <!-- <path *ngFor="let sector of sectorsData"
-    [attr.d]="sector.path"
-  />
-  <path *ngFor="let border of borders"
-    [attr.d]="border"
+  <!-- <path *ngFor="let border of borders"
+    class="sector-border"
+    [attr.d]=""
+    [attr.stroke-width]=""
   /> -->
 
 </svg>
