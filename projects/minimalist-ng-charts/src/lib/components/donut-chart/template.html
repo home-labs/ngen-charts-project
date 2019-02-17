@@ -17,6 +17,7 @@
   />
 
   <circle
+    *ngIf="strokeSettings.bindOn.includes('outer')"
     class="outer-border"
     [attr.r]="calculatedExternalBorderRadius"
     [attr.stroke-width]="strokeWidth"
@@ -25,6 +26,7 @@
   />
 
   <circle
+    *ngIf="strokeSettings.bindOn.includes('inner')"
     class="inner-border"
     [attr.r]="calculatedInternalBorderRadius"
     [attr.stroke-width]="strokeWidth"

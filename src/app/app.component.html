@@ -1,5 +1,8 @@
 <app-donut-chart
-  [strokeWidth]="'1px'"
+  [strokeSettings]="{
+    width: '1px',
+    bindOn: ['inner', 'outer', 'sectors']
+  }"
   [radius]="'90px'"
   [borderWidth]="'30px'"
   [sectors]="[

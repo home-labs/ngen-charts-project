@@ -11,7 +11,7 @@ import '../../extensions/number';
 
 declare interface EnteredSector {
     value: number;
-    ngClass?: Object;
+    ngClass: Object;
 }
 
 declare interface Sector {
@@ -20,10 +20,15 @@ declare interface Sector {
     offset?: number;
 }
 
-declare interface Point {
-    x: number;
-    y: number;
+declare interface StrokeSettings {
+    width?: string;
+    bindOn?: Array<string>;
 }
+
+// declare interface Point {
+//     x: number;
+//     y: number;
+// }
 
 
 @Component({
@@ -39,10 +44,11 @@ export class DonutChartComponent implements OnInit {
     @Input()
     borderWidth: string;
 
-    @Input('strokeWidth') strokeWidth: string;
+    @Input()
+    strokeSettings: StrokeSettings;
 
     @Input()
-    sectors: Array<Object>;
+    sectors: Array<EnteredSector>;
 
     // @ViewChild('svg')
     // private svg: ElementRef;
@@ -51,7 +57,7 @@ export class DonutChartComponent implements OnInit {
 
     borderCircunference: string;
 
-    sectorsData: Array<Object>;
+    sectorsData: Array<Sector>;
 
     diameter: string;
     calculatedRadius: string;
@@ -64,6 +70,9 @@ export class DonutChartComponent implements OnInit {
     constructor() {
         this.sectorsData = [];
         this.sum = 0;
+
+        this.strokeSettings = {};
+        this.strokeSettings.width = '1px';
     }
 
     ngOnInit() {
@@ -73,7 +82,6 @@ export class DonutChartComponent implements OnInit {
             lastOffset: number = 0,
             lastLength: number = 0,
             calculatedDiameter: number,
-
             numericInputStrokeWidth: number;
 
         const
@@ -83,11 +91,7 @@ export class DonutChartComponent implements OnInit {
 
         // this._svg = this.svg.nativeElement;
 
-        if (!this.strokeWidth) {
-            this.strokeWidth = '0px';
-        }
-
-        numericInputStrokeWidth = parseFloat(this.strokeWidth);
+        numericInputStrokeWidth = parseFloat(this.strokeSettings.width);
 
         this.diameter = `${diameter}${unity}`;
 
@@ -108,7 +112,7 @@ export class DonutChartComponent implements OnInit {
         this.calculatedInternalBorderRadius = `${
             (
                 diameter - (
-                    // its own and 2 of outer
+                    // one of its own plus 2 of the outer
                     (numericInputStrokeWidth * 3) +
                     ((numericInputBorderWidth - 0.1) * 2)
                 )
