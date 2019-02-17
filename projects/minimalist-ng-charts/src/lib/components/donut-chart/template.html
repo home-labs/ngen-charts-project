@@ -18,18 +18,17 @@
 
   <circle
     *ngIf="strokeSettings.bindOn.includes('outer')"
-    class="outer-circumference-border"
-    [attr.r]="calculatedExternalBorderRadius"
-    [attr.stroke-width]="strokeWidth"
+    class="outer-circumference"
+    [attr.r]="calculatedOuterCircumferenceRadius"
+    [attr.stroke-width]="strokeSettings.width"
     [attr.cx]="radius"
     [attr.cy]="radius"
   />
 
   <circle
-    *ngIf="strokeSettings.bindOn.includes('inner')"
-    class="inner-circumference-border"
-    [attr.r]="calculatedInternalBorderRadius"
-    [attr.stroke-width]="strokeWidth"
+    class="inner-circumference"
+    [attr.r]="calculatedInnerCircumferenceRadius"
+    [attr.stroke-width]="innerCircumferenceStroke"
     [attr.cx]="radius"
     [attr.cy]="radius"
   />

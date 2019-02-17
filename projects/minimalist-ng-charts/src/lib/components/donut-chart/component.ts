@@ -55,6 +55,8 @@ export class DonutChartComponent implements OnInit {
 
     // private _svg: SVGElement;
 
+    innerCircumferenceStroke: string;
+
     borderCircunference: string;
 
     sectorsData: Array<Sector>;
@@ -62,8 +64,8 @@ export class DonutChartComponent implements OnInit {
     diameter: string;
     calculatedRadius: string;
     circumferenceLength: number;
-    calculatedExternalBorderRadius: string;
-    calculatedInternalBorderRadius: string;
+    calculatedOuterCircumferenceRadius: string;
+    calculatedInnerCircumferenceRadius: string;
 
     private sum: number;
 
@@ -72,7 +74,10 @@ export class DonutChartComponent implements OnInit {
         this.sum = 0;
 
         this.strokeSettings = {};
+        this.innerCircumferenceStroke = '0px';
         this.strokeSettings.width = '1px';
+        this.calculatedInnerCircumferenceRadius = '0px';
+        this.strokeSettings.bindOn = [];
     }
 
     ngOnInit() {
@@ -96,7 +101,7 @@ export class DonutChartComponent implements OnInit {
         this.diameter = `${diameter}${unity}`;
 
         // only half of the outer borders are considered to width and height
-        this.calculatedExternalBorderRadius = `${
+        this.calculatedOuterCircumferenceRadius = `${
             (
                 diameter - numericInputStrokeWidth
             ) / 2}${unity}`;
@@ -109,14 +114,25 @@ export class DonutChartComponent implements OnInit {
                 )
             ) / 2}${unity}`;
 
-        this.calculatedInternalBorderRadius = `${
-            (
-                diameter - (
-                    // one of its own plus 2 of the outer
-                    (numericInputStrokeWidth * 3) +
-                    ((numericInputBorderWidth - 0.1) * 2)
-                )
-            ) / 2}${unity}`;
+
+        if (this.strokeSettings.bindOn.includes('inner')) {
+            this.calculatedInnerCircumferenceRadius = `${
+                (
+                    diameter - (
+                        // one of its own plus 2 of the outer
+                        (numericInputStrokeWidth * 3) +
+                        ((numericInputBorderWidth - 0.1) * 2)
+                    )
+                ) / 2}${unity}`;
+        } else {
+            this.calculatedInnerCircumferenceRadius = `${
+                (
+                    diameter - (
+                        (numericInputStrokeWidth * 2) +
+                        ((numericInputBorderWidth - 0.1) * 2)
+                    )
+                ) / 2}${unity}`;
+        }
 
         calculatedDiameter = parseFloat(this.calculatedRadius) * 2;
         this.circumferenceLength = (Math.PI * calculatedDiameter).round(4);
