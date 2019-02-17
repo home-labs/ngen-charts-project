@@ -1,4 +1,5 @@
 <app-donut-chart
+  [strokeWidth]="'1px'"
   [radius]="'90px'"
   [borderWidth]="'30px'"
   [sectors]="[
@@ -18,25 +19,6 @@
       value: 30,
       ngClass: {
         red: true
-      }
-    }
-  ]"
-></app-donut-chart>
-
-<app-donut-chart
-  [radius]="'90px'"
-  [borderWidth]="'30px'"
-  [sectors]="[
-    {
-      value: 9,
-      ngClass: {
-        green: true
-      }
-    }
-    ,{
-      value: total - 9,
-      ngClass: {
-        yellow: true
       }
     }
   ]"

@@ -3,14 +3,33 @@
   [attr.width]="diameter"
   [attr.height]="diameter"
 >
-  <circle *ngFor="let sector of sectorsData"
-    [attr.r]="radius"
-    [attr.cx]="calculatedRadius"
-    [attr.cy]="calculatedRadius"
+
+  <circle
+    *ngFor="let sector of sectorsData"
+    class="sector"
+    [attr.r]="calculatedRadius"
+    [attr.cx]="radius"
+    [attr.cy]="radius"
     [attr.stroke-width]="borderWidth"
     [attr.stroke-dasharray]="[sector.length, circumferenceLength]"
     [attr.stroke-dashoffset]="-sector.offset"
     [ngClass]="sector?.ngClass"
+  />
+
+  <circle
+    class="external-border"
+    [attr.r]="calculatedExternalBorderRadius"
+    [attr.stroke-width]="strokeWidth"
+    [attr.cx]="radius"
+    [attr.cy]="radius"
+  />
+
+  <circle
+    class="internal-border"
+    [attr.r]="calculatedInternalBorderRadius"
+    [attr.stroke-width]="strokeWidth"
+    [attr.cx]="radius"
+    [attr.cy]="radius"
   />
 
   <!-- <path *ngFor="let sector of sectorsData"

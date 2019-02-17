@@ -9,9 +9,15 @@ import {
 import '../../extensions/number';
 
 
-declare interface Sector {
+declare interface EnteredSector {
     value: number;
     ngClass?: Object;
+}
+
+declare interface Sector {
+    ngClass?: Object;
+    length?: number;
+    offset?: number;
 }
 
 declare interface Point {
@@ -33,6 +39,8 @@ export class DonutChartComponent implements OnInit {
     @Input()
     borderWidth: string;
 
+    @Input('strokeWidth') strokeWidth: string;
+
     @Input()
     sectors: Array<Object>;
 
@@ -41,13 +49,16 @@ export class DonutChartComponent implements OnInit {
 
     // private _svg: SVGElement;
 
+    borderCircunference: string;
+
     sectorsData: Array<Object>;
 
-    circumferenceLength: number;
     diameter: string;
     calculatedRadius: string;
+    circumferenceLength: number;
+    calculatedExternalBorderRadius: string;
+    calculatedInternalBorderRadius: string;
 
-    private numericInputRadius: number
     private sum: number;
 
     constructor() {
@@ -56,38 +67,69 @@ export class DonutChartComponent implements OnInit {
     }
 
     ngOnInit() {
+
         let
+            unity: string = this.extractsUnity(this.radius),
             lastOffset: number = 0,
             lastLength: number = 0,
-            diameter: number;
+            calculatedDiameter: number,
+
+            numericInputStrokeWidth: number;
+
+        const
+            numericInputRadius: number = parseFloat(this.radius),
+            diameter: number = numericInputRadius * 2,
+            numericInputBorderWidth: number = parseFloat(this.borderWidth);
 
         // this._svg = this.svg.nativeElement;
 
-        this.numericInputRadius = parseFloat(this.radius);
-        diameter = 2 * this.numericInputRadius;
-        this.circumferenceLength = (Math.PI * diameter).round(4);
-        this.resolvesLength();
+        if (!this.strokeWidth) {
+            this.strokeWidth = '0px';
+        }
+
+        numericInputStrokeWidth = parseFloat(this.strokeWidth);
+
+        this.diameter = `${diameter}${unity}`;
+
+        // the borders aren't considered to calculate the radius
+        this.calculatedExternalBorderRadius = `${(diameter -
+            numericInputStrokeWidth) / 2}${unity}`;
+
+        this.calculatedRadius = `${(diameter - numericInputBorderWidth) /
+            2}${unity}`;
+
+        this.calculatedInternalBorderRadius = `${(diameter -
+            (numericInputBorderWidth * 2)) / 2}${unity}`;
+
+        // console.log(diameter);
+        // console.log(numericInputBorderWidth);
+        // console.log(numericInputStrokeWidth);
+        // console.log((diameter - (numericInputBorderWidth + (numericInputStrokeWidth * 2))) / 2);
+
+        calculatedDiameter = parseFloat(this.calculatedRadius) * 2;
+        this.circumferenceLength = (Math.PI * calculatedDiameter).round(4);
+
         this.calculatesSum();
 
         this.sectors.forEach(
-            (sector: Sector) => {
+            (enteredSector: EnteredSector) => {
                 const
-                    sectorData: Object = {},
-                    percentageLength: number = this.sum.calculatesPercentageTo(sector.value);
+                    sector: Sector = {},
+                    percentageLength: number = this.sum.calculatesPercentageTo(enteredSector.value);
 
-                if (sector.hasOwnProperty('ngClass')) {
-                    sectorData['ngClass'] = sector.ngClass;
+                if (enteredSector.hasOwnProperty('ngClass')) {
+                    sector.ngClass = enteredSector.ngClass;
                 }
 
-                sectorData['length'] = this
+                sector.length = this
                     .calculatesSectorLength(percentageLength);
 
-                sectorData['offset'] = lastLength + lastOffset;
+                sector.offset = lastLength + lastOffset;
 
-                this.sectorsData.push(sectorData);
+                this.sectorsData.push(sector);
 
-                lastOffset = sectorData['offset'];
-                lastLength = sectorData['length'];
+                lastOffset = sector.offset;
+                lastLength = sector.length;
             }
         );
 
@@ -109,7 +151,7 @@ export class DonutChartComponent implements OnInit {
 
     private calculatesSum() {
         this.sectors.forEach(
-            (sector: Sector) => {
+            (sector: EnteredSector) => {
                 this.sum += sector.value;
             }
         );
@@ -126,17 +168,6 @@ export class DonutChartComponent implements OnInit {
         }
 
         return length.round(4);
-    }
-
-    private resolvesLength() {
-        let
-            radiusUnity: string = this.extractsUnity(this.radius),
-            borderWidth: number = parseFloat(this.borderWidth),
-
-            diameter: number = (2 * this.numericInputRadius) + borderWidth;
-
-        this.diameter = `${diameter}${radiusUnity}`;
-        this.calculatedRadius = `${(diameter / 2)}${radiusUnity}`;
     }
 
     private extractsUnity(value: string = 'px'): string {
