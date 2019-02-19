@@ -20,6 +20,10 @@ declare interface Sector {
     offset?: number;
 }
 
+declare interface SectorBorder {
+    d?: string;
+}
+
 declare interface StrokeSettings {
     width?: string;
     bindOn?: Array<string>;
@@ -55,22 +59,21 @@ export class DonutChartComponent implements OnInit {
 
     // private _svg: SVGElement;
 
-    innerCircumferenceStroke: string;
-
-    borderCircunference: string;
-
-    sectorsData: Array<Sector>;
-
     diameter: string;
+    sectorsData: Array<Sector>;
     calculatedRadius: string;
     circumferenceLength: number;
     calculatedOuterCircumferenceRadius: string;
     calculatedInnerCircumferenceRadius: string;
+    innerCircumferenceStroke: string;
+    sectorBorders: Array<SectorBorder>;
 
+    private numericInputRadius: number;
     private sum: number;
 
     constructor() {
         this.sectorsData = [];
+        this.sectorBorders = [];
         this.sum = 0;
 
         this.strokeSettings = {};
@@ -82,6 +85,8 @@ export class DonutChartComponent implements OnInit {
 
     ngOnInit() {
 
+        this.numericInputRadius = parseFloat(this.radius);
+
         let
             unity: string = this.extractsUnity(this.radius),
             lastOffset: number = 0,
@@ -90,9 +95,9 @@ export class DonutChartComponent implements OnInit {
             numericInputStrokeWidth: number;
 
         const
-            numericInputRadius: number = parseFloat(this.radius),
-            diameter: number = numericInputRadius * 2,
-            numericInputBorderWidth: number = parseFloat(this.borderWidth);
+            diameter: number = this.numericInputRadius * 2,
+            numericInputBorderWidth: number = parseFloat(this.borderWidth),
+            circumferenceAngle: number = 360;
 
         // this._svg = this.svg.nativeElement;
 
@@ -142,7 +147,8 @@ export class DonutChartComponent implements OnInit {
         this.sectors.forEach(
             (enteredSector: EnteredSector) => {
                 const
-                    sector: Sector = {};
+                    sector: Sector = {},
+                    angle: number = circumferenceAngle.calculatesValueToProportionalPart(enteredSector.value, this.sum);
 
                 if (enteredSector.hasOwnProperty('ngClass')) {
                     sector.ngClass = enteredSector.ngClass;
