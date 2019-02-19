@@ -72,6 +72,7 @@ export class DonutChartComponent implements OnInit {
     private sum: number;
 
     constructor() {
+        this.strokeSettings = {};
         this.sectorsData = [];
         this.sectorBorders = [];
         this.strokeSettings.bindOn = [];
@@ -79,7 +80,6 @@ export class DonutChartComponent implements OnInit {
         this.innerCircumferenceStroke = '0px';
         this.calculatedInnerCircumferenceRadius = '0px';
         this.sum = 0;
-        this.strokeSettings = {};
     }
 
     ngOnInit() {
@@ -149,6 +149,12 @@ export class DonutChartComponent implements OnInit {
                     sector: Sector = {},
                     angle: number = circumferenceAngle.calculatesValueToProportionalPart(enteredSector.value, this.sum);
 
+                let
+                    border1X: number,
+                    border1Y: number,
+                    border2X: number,
+                    border2Y: number;
+
                 if (enteredSector.hasOwnProperty('ngClass')) {
                     sector.ngClass = enteredSector.ngClass;
                 }
@@ -163,6 +169,14 @@ export class DonutChartComponent implements OnInit {
 
                 lastOffset = sector.offset;
                 lastLength = sector.length;
+
+                this.sectorBorders.push({
+                    d: `
+                        M ${border1X},${border1Y}
+                        L ${this.numericInputRadius},${this.numericInputRadius}
+                        L ${border2X},${border2Y}
+                    `
+                });
             }
         );
 
