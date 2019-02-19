@@ -148,9 +148,9 @@ export class DonutChartComponent implements OnInit {
                     sector.ngClass = enteredSector.ngClass;
                 }
 
-                sector.length = this.sum
-                    .calculatesProportionalPartTo(enteredSector.value,
-                        this.circumferenceLength).round(4);
+                sector.length = this.circumferenceLength
+                    .calculatesValueToProportionalPart(enteredSector.value,
+                        this.sum).round(4);
 
                 sector.offset = lastLength + lastOffset;
 
