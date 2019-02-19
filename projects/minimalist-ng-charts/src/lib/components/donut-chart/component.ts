@@ -142,15 +142,15 @@ export class DonutChartComponent implements OnInit {
         this.sectors.forEach(
             (enteredSector: EnteredSector) => {
                 const
-                    sector: Sector = {},
-                    percentageLength: number = this.sum.calculatesPercentageTo(enteredSector.value);
+                    sector: Sector = {};
 
                 if (enteredSector.hasOwnProperty('ngClass')) {
                     sector.ngClass = enteredSector.ngClass;
                 }
 
-                sector.length = this
-                    .calculatesSectorLength(percentageLength);
+                sector.length = this.sum
+                    .calculatesProportionalPartTo(enteredSector.value,
+                        this.circumferenceLength).round(4);
 
                 sector.offset = lastLength + lastOffset;
 
@@ -183,19 +183,6 @@ export class DonutChartComponent implements OnInit {
                 this.sum += sector.value;
             }
         );
-    }
-
-    private calculatesSectorLength(percentageLength: number): number {
-        const
-            length: number = this.circumferenceLength * (percentageLength / 100);
-
-        if (length > this.circumferenceLength) {
-            return this.circumferenceLength;
-        } else if (length < 0) {
-            return 0;
-        }
-
-        return length.round(4);
     }
 
     private extractsUnity(value: string = 'px'): string {

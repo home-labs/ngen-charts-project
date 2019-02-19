@@ -1,8 +1,8 @@
 declare interface Number {
 
-    calculatesPercentageTo(value: number, oneHundredPercentEquivalence?: number): number;
+    calculatesProportionalPartTo(value: number, oneHundredPercentEquivalence?: number): number;
 
-    calculatesValueToPercentage(value: number, oneHundredPercentEquivalence?: number): number;
+    calculatesValueToProportionalPart(value: number, oneHundredPercentEquivalence?: number): number;
 
     isOdd(): number;
 
@@ -41,13 +41,13 @@ declare interface Number {
 // 570
 
 
-Number.prototype.calculatesPercentageTo = function (value: number, oneHundredPercentEquivalence: number = 100): number {
+Number.prototype.calculatesProportionalPartTo = function (value: number, oneHundredPercentEquivalence: number = 100): number {
 
     return (value * oneHundredPercentEquivalence) / this;
 
 }
 
-Number.prototype.calculatesValueToPercentage = function (value: number, oneHundredPercentEquivalence: number = 100): number {
+Number.prototype.calculatesValueToProportionalPart = function (value: number, oneHundredPercentEquivalence: number = 100): number {
 
     return (value * this) / oneHundredPercentEquivalence;
 
