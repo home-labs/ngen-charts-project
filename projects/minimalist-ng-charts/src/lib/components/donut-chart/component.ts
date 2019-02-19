@@ -74,13 +74,12 @@ export class DonutChartComponent implements OnInit {
     constructor() {
         this.sectorsData = [];
         this.sectorBorders = [];
-        this.sum = 0;
-
-        this.strokeSettings = {};
-        this.innerCircumferenceStroke = '0px';
-        this.strokeSettings.width = '1px';
-        this.calculatedInnerCircumferenceRadius = '0px';
         this.strokeSettings.bindOn = [];
+        this.strokeSettings.width = '1px';
+        this.innerCircumferenceStroke = '0px';
+        this.calculatedInnerCircumferenceRadius = '0px';
+        this.sum = 0;
+        this.strokeSettings = {};
     }
 
     ngOnInit() {
