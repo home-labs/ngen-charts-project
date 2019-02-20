@@ -62,72 +62,72 @@ Number.prototype.isOdd = function (): number {
 Number.prototype.round = function (decimalPlacesCount: number = 0): number {
 
     let
-        pieces: Array<string>,
-        integerPiece: number,
-        decimalPiece: string,
+        parts: Array<string>,
+        integerPart: number,
+        decimalPart: string,
         nextNeighborsOfRight: number,
-        decimalPiece2ChangeAsString: string,
-        decimalPiece2Change: number,
+        decimalPart2Change: number,
+        decimalPart2ChangeAsString: string,
         oldDecimalFirstDigit: number,
         decimalFirstDigit: number,
         result: string,
         zerosCount: number = 0,
         zeros: string = ''
-        ;
+    ;
 
     if (!decimalPlacesCount) {
         return Math.round(this);
     }
 
-    pieces = `${this}`.split('.');
-    integerPiece = parseInt(pieces[0]);
+    parts = `${this}`.split('.');
 
-    if (pieces.length == 2) {
-        decimalPiece = pieces[1];
-    }
+    if (parts.length == 2) {
+        integerPart = parseInt(parts[0]);
+        decimalPart = parts[1];
 
-    if (decimalPlacesCount < decimalPiece.length) {
+        if (decimalPlacesCount < decimalPart.length) {
 
-        nextNeighborsOfRight = parseInt(decimalPiece
-            .slice(decimalPlacesCount + 1, decimalPiece.length) || '0');
+            nextNeighborsOfRight = parseInt(decimalPart
+                .slice(decimalPlacesCount + 1, decimalPart.length) || '0');
 
-        decimalPiece2ChangeAsString = decimalPiece
-            .slice(0, decimalPlacesCount);
-        oldDecimalFirstDigit = parseInt(decimalPiece2ChangeAsString[0]);
-        decimalPiece2Change = parseInt(decimalPiece2ChangeAsString);
+            decimalPart2ChangeAsString = decimalPart
+                .slice(0, decimalPlacesCount);
+            oldDecimalFirstDigit = parseInt(decimalPart2ChangeAsString[0]);
+            decimalPart2Change = parseInt(decimalPart2ChangeAsString);
 
-        if (parseInt(decimalPiece[decimalPlacesCount]) > 5 ||
-            // according IBGE resolution number 886/66
-            (parseInt(decimalPiece[decimalPlacesCount]) == 5 &&
-                (nextNeighborsOfRight > 0 ||
-                    parseInt(decimalPiece[decimalPlacesCount - 1]).isOdd()))
-        ) {
-            decimalPiece2Change += 1;
-
-            decimalFirstDigit = parseInt(`${decimalPiece2Change}`[0]);
-
-            if (decimalPiece2ChangeAsString.length >
-                `${decimalPiece2Change}`.length
+            if (parseInt(decimalPart[decimalPlacesCount]) > 5 ||
+                // according IBGE resolution number 886/66
+                (parseInt(decimalPart[decimalPlacesCount]) == 5 &&
+                    (nextNeighborsOfRight > 0 ||
+                        parseInt(decimalPart[decimalPlacesCount - 1]).isOdd()))
             ) {
-                zerosCount = decimalPiece2ChangeAsString.length -
-                    `${decimalPiece2Change}`.length;
-                zeros = decimalPiece2ChangeAsString.slice(0, zerosCount);
+                decimalPart2Change += 1;
+
+                decimalFirstDigit = parseInt(`${decimalPart2Change}`[0]);
+
+                if (decimalPart2ChangeAsString.length >
+                    `${decimalPart2Change}`.length
+                ) {
+                    zerosCount = decimalPart2ChangeAsString.length -
+                        `${decimalPart2Change}`.length;
+                    zeros = decimalPart2ChangeAsString.slice(0, zerosCount);
+                }
+
+                if (!zerosCount && decimalFirstDigit < oldDecimalFirstDigit) {
+                    integerPart += 1;
+                }
             }
 
-            if (!zerosCount && decimalFirstDigit < oldDecimalFirstDigit) {
-                integerPiece += 1;
+            result = `${integerPart}`;
+
+            if (zeros.length) {
+                result += `.${zeros}${decimalPart2Change}`;
+            } else {
+                result += `.${decimalPart2Change}`;
             }
+
+            return parseFloat(result);
         }
-
-        result = `${integerPiece}`;
-
-        if (zeros.length) {
-            result += `.${zeros}${decimalPiece2Change}`;
-        } else {
-            result += `.${decimalPiece2Change}`;
-        }
-
-        return parseFloat(result);
     }
 
     return this;

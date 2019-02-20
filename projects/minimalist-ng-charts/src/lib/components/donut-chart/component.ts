@@ -90,7 +90,7 @@ export class DonutChartComponent implements OnInit {
 
 
         if (this.strokeSettings.bindOn.includes('inner')) {
-            this.innerCircumferenceStroke = `${this.strokeSettings.width}${unity}`;
+            this.innerCircumferenceStroke = this.strokeSettings.width;
             this.calculatedInnerCircumferenceRadius = `${
                 (
                     diameter - (
@@ -116,11 +116,19 @@ export class DonutChartComponent implements OnInit {
 
         this.sectors.forEach(
             (enteredSector: EnteredSector) => {
+
                 const
                     sector: Sector = {},
-                    proportionalAngle: number = circumferenceAngle.calculatesValueToProportionalPart(enteredSector.value, this.sum),
-                    adjacentLegLength: number = this.numericInputRadius + (Math.cos((currentAnglePosition * Math.PI) / 180) * (this.numericInputRadius - this.numericInputStrokeWidth)),
-                    oppositeLegLength: number = this.numericInputRadius + (Math.sin((currentAnglePosition * Math.PI) / 180) * (this.numericInputRadius - this.numericInputStrokeWidth));
+                    proportionalAngle: number = circumferenceAngle
+                        .calculatesValueToProportionalPart(enteredSector.value, this.sum),
+                    adjacentLegLength: number = this.numericInputRadius +
+                        (Math.cos((currentAnglePosition * Math.PI) / 180) *
+                            (this.numericInputRadius -
+                                this.numericInputStrokeWidth)),
+                    oppositeLegLength: number = this.numericInputRadius +
+                        (Math.sin((currentAnglePosition * Math.PI) / 180) *
+                            (this.numericInputRadius -
+                                this.numericInputStrokeWidth));
 
                 currentAnglePosition += proportionalAngle;
 
@@ -131,6 +139,10 @@ export class DonutChartComponent implements OnInit {
                 sector.length = this.circumferenceLength
                     .calculatesValueToProportionalPart(enteredSector.value,
                         this.sum).round(4);
+
+                if (sector.length > this.circumferenceLength) {
+                    sector.length = this.circumferenceLength;
+                }
 
                 sector.offset = lastLength + lastOffset;
 
