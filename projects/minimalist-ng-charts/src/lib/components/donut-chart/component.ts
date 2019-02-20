@@ -1,9 +1,7 @@
 import {
     Component,
     Input,
-    OnInit,
-    // ViewChild,
-    // ElementRef
+    OnInit
 } from '@angular/core';
 
 import '../../extensions/number';
@@ -29,11 +27,6 @@ declare interface StrokeSettings {
     bindOn?: Array<string>;
 }
 
-// declare interface Point {
-//     x: number;
-//     y: number;
-// }
-
 
 @Component({
     selector: 'app-donut-chart',
@@ -53,11 +46,6 @@ export class DonutChartComponent implements OnInit {
 
     @Input()
     sectors: Array<EnteredSector>;
-
-    // @ViewChild('svg')
-    // private svg: ElementRef;
-
-    // private _svg: SVGElement;
 
     diameter: string;
     sectorsData: Array<Sector>;
@@ -92,7 +80,7 @@ export class DonutChartComponent implements OnInit {
             unity: string = this.extractsUnity(this.radius),
             lastOffset: number = 0,
             lastLength: number = 0,
-            anglePosition: number = 0,
+            currentAnglePosition: number = 0,
             calculatedDiameter: number;
 
         const
@@ -118,6 +106,7 @@ export class DonutChartComponent implements OnInit {
 
 
         if (this.strokeSettings.bindOn.includes('inner')) {
+            this.innerCircumferenceStroke = `${this.strokeSettings.width}${unity}`;
             this.calculatedInnerCircumferenceRadius = `${
                 (
                     diameter - (
@@ -145,11 +134,11 @@ export class DonutChartComponent implements OnInit {
             (enteredSector: EnteredSector) => {
                 const
                     sector: Sector = {},
-                    angle: number = circumferenceAngle.calculatesValueToProportionalPart(enteredSector.value, this.sum),
-                    adjacentLegLength: number = this.numericInputRadius + (Math.cos((anglePosition * Math.PI) / 180) * (this.numericInputRadius - this.numericInputStrokeWidth)),
-                    oppositeLegLength: number = this.numericInputRadius + (Math.sin((anglePosition * Math.PI) / 180) * (this.numericInputRadius - this.numericInputStrokeWidth));
+                    proportionalAngle: number = circumferenceAngle.calculatesValueToProportionalPart(enteredSector.value, this.sum),
+                    adjacentLegLength: number = this.numericInputRadius + (Math.cos((currentAnglePosition * Math.PI) / 180) * (this.numericInputRadius - this.numericInputStrokeWidth)),
+                    oppositeLegLength: number = this.numericInputRadius + (Math.sin((currentAnglePosition * Math.PI) / 180) * (this.numericInputRadius - this.numericInputStrokeWidth));
 
-                anglePosition += angle;
+                currentAnglePosition += proportionalAngle;
 
                 if (enteredSector.hasOwnProperty('ngClass')) {
                     sector.ngClass = enteredSector.ngClass;
