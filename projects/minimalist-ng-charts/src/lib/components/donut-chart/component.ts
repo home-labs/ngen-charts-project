@@ -146,8 +146,8 @@ export class DonutChartComponent implements OnInit {
                 const
                     sector: Sector = {},
                     angle: number = circumferenceAngle.calculatesValueToProportionalPart(enteredSector.value, this.sum),
-                    adjacentLegLength: number = this.numericInputRadius + (Math.cos((anglePosition * Math.PI) / 180) * this.numericInputRadius),
-                    oppositeLegLength: number = this.numericInputRadius + (Math.sin((anglePosition * Math.PI) / 180) * this.numericInputRadius);
+                    adjacentLegLength: number = this.numericInputRadius + (Math.cos((anglePosition * Math.PI) / 180) * (this.numericInputRadius - this.numericInputStrokeWidth)),
+                    oppositeLegLength: number = this.numericInputRadius + (Math.sin((anglePosition * Math.PI) / 180) * (this.numericInputRadius - this.numericInputStrokeWidth));
 
                 anglePosition += angle;
 
