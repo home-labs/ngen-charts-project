@@ -69,6 +69,7 @@ export class DonutChartComponent implements OnInit {
     sectorBorders: Array<SectorBorder>;
 
     private numericInputRadius: number;
+    private numericInputStrokeWidth: number;
     private sum: number;
 
     constructor() {
@@ -85,36 +86,32 @@ export class DonutChartComponent implements OnInit {
     ngOnInit() {
 
         this.numericInputRadius = parseFloat(this.radius);
+        this.numericInputStrokeWidth = parseFloat(this.strokeSettings.width);
 
         let
             unity: string = this.extractsUnity(this.radius),
             lastOffset: number = 0,
             lastLength: number = 0,
             anglePosition: number = 0,
-            calculatedDiameter: number,
-            numericInputStrokeWidth: number;
+            calculatedDiameter: number;
 
         const
             diameter: number = this.numericInputRadius * 2,
             numericInputBorderWidth: number = parseFloat(this.borderWidth),
             circumferenceAngle: number = 360;
 
-        // this._svg = this.svg.nativeElement;
-
-        numericInputStrokeWidth = parseFloat(this.strokeSettings.width);
-
         this.diameter = `${diameter}${unity}`;
 
         // only half of the outer borders are considered to width and height
         this.calculatedOuterCircumferenceRadius = `${
             (
-                diameter - numericInputStrokeWidth
+                diameter - this.numericInputStrokeWidth
             ) / 2}${unity}`;
 
         this.calculatedRadius = `${
             (
                 diameter - (
-                    ((numericInputStrokeWidth - 0.1) * 2) +
+                    ((this.numericInputStrokeWidth - 0.1) * 2) +
                     numericInputBorderWidth
                 )
             ) / 2}${unity}`;
@@ -125,7 +122,7 @@ export class DonutChartComponent implements OnInit {
                 (
                     diameter - (
                         // one of its own plus 2 of the outer
-                        (numericInputStrokeWidth * 3) +
+                        (this.numericInputStrokeWidth * 3) +
                         ((numericInputBorderWidth - 0.1) * 2)
                     )
                 ) / 2}${unity}`;
@@ -133,7 +130,7 @@ export class DonutChartComponent implements OnInit {
             this.calculatedInnerCircumferenceRadius = `${
                 (
                     diameter - (
-                        (numericInputStrokeWidth * 2) +
+                        (this.numericInputStrokeWidth * 2) +
                         ((numericInputBorderWidth - 0.1) * 2)
                     )
                 ) / 2}${unity}`;
