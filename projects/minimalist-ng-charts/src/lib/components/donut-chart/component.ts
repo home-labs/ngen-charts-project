@@ -90,6 +90,7 @@ export class DonutChartComponent implements OnInit {
             unity: string = this.extractsUnity(this.radius),
             lastOffset: number = 0,
             lastLength: number = 0,
+            anglePosition: number = 0,
             calculatedDiameter: number,
             numericInputStrokeWidth: number;
 
@@ -147,13 +148,11 @@ export class DonutChartComponent implements OnInit {
             (enteredSector: EnteredSector) => {
                 const
                     sector: Sector = {},
-                    angle: number = circumferenceAngle.calculatesValueToProportionalPart(enteredSector.value, this.sum);
+                    angle: number = circumferenceAngle.calculatesValueToProportionalPart(enteredSector.value, this.sum),
+                    adjacentLegLength: number = this.numericInputRadius + (Math.cos((anglePosition * Math.PI) / 180) * this.numericInputRadius),
+                    oppositeLegLength: number = this.numericInputRadius + (Math.sin((anglePosition * Math.PI) / 180) * this.numericInputRadius);
 
-                let
-                    border1X: number,
-                    border1Y: number,
-                    border2X: number,
-                    border2Y: number;
+                anglePosition += angle;
 
                 if (enteredSector.hasOwnProperty('ngClass')) {
                     sector.ngClass = enteredSector.ngClass;
@@ -172,29 +171,14 @@ export class DonutChartComponent implements OnInit {
 
                 this.sectorBorders.push({
                     d: `
-                        M ${border1X},${border1Y}
-                        L ${this.numericInputRadius},${this.numericInputRadius}
-                        L ${border2X},${border2Y}
+                        M ${this.numericInputRadius},${this.numericInputRadius}
+                        L ${adjacentLegLength},${oppositeLegLength}
                     `
                 });
             }
         );
 
-        // this.render();
     }
-
-    // private render() {
-    //     let
-    //         circle: SVGCircleElement;
-
-    //     this.sectorsData.forEach(
-    //         (sector: Object) => {
-    //             circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-
-    //             console.log(circle.constructor);
-    //         }
-    //     );
-    // }
 
     private calculatesSum() {
         this.sectors.forEach(
