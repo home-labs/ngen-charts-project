@@ -6,26 +6,10 @@ import {
 
 import '../../extensions/number';
 
-
-declare interface EnteredSector {
-    value: number;
-    ngClass: Object;
-}
-
-declare interface Sector {
-    ngClass?: Object;
-    length?: number;
-    offset?: number;
-}
-
-declare interface SectorBorder {
-    d?: string;
-}
-
-declare interface StrokeSettings {
-    width?: string;
-    bindOn?: Array<string>;
-}
+import { StrokeSettings } from '../../stroke-settings';
+import { EnteredSector } from '../../entered-sector';
+import { Sector } from '../../sector';
+import { SectorBorder } from '../../sector-border';
 
 
 @Component({
