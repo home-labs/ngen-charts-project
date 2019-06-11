@@ -13,7 +13,8 @@ declare interface Number {
 // 360 -- 100 -- 500
 // x   -- y%  -- 50
 
-// os valores informados não estarão em ângulo, mas representarão parte de um todo. O todo é 1, 100, ou, em ângulo de uma circunferência, 360
+// os valores informados não estarão em ângulo, mas representarão parte de um todo. O todo é 1, 100, ou, em ângulo de uma circunferência,
+// 360
 
 // 360 -- 500
 // x   -- 50
@@ -45,19 +46,19 @@ Number.prototype.calculatesProportionalPartTo = function (value: number, oneHund
 
     return (value * oneHundredPercentEquivalence) / this;
 
-}
+};
 
 Number.prototype.calculatesValueToProportionalPart = function (value: number, oneHundredPercentEquivalence: number = 100): number {
 
     return (value * this) / oneHundredPercentEquivalence;
 
-}
+};
 
 Number.prototype.isOdd = function (): number {
 
     return this % 2;
 
-}
+};
 
 Number.prototype.round = function (decimalPlacesCount: number = 0): number {
 
@@ -71,8 +72,8 @@ Number.prototype.round = function (decimalPlacesCount: number = 0): number {
         oldDecimalFirstDigit: number,
         decimalFirstDigit: number,
         result: string,
-        zerosCount: number = 0,
-        zeros: string = ''
+        zerosCount: Number = 0,
+        zeros: String = ''
     ;
 
     if (!decimalPlacesCount) {
@@ -81,36 +82,38 @@ Number.prototype.round = function (decimalPlacesCount: number = 0): number {
 
     parts = `${this}`.split('.');
 
-    if (parts.length == 2) {
-        integerPart = parseInt(parts[0]);
+    if (parts.length === 2) {
+        integerPart = Number.parseInt(parts[0]);
         decimalPart = parts[1];
 
         if (decimalPlacesCount < decimalPart.length) {
 
-            nextNeighborsOfRight = parseInt(decimalPart
+            nextNeighborsOfRight = Number.parseInt(decimalPart
                 .slice(decimalPlacesCount + 1, decimalPart.length) || '0');
 
             decimalPart2ChangeAsString = decimalPart
                 .slice(0, decimalPlacesCount);
-            oldDecimalFirstDigit = parseInt(decimalPart2ChangeAsString[0]);
-            decimalPart2Change = parseInt(decimalPart2ChangeAsString);
+            oldDecimalFirstDigit = Number.parseInt(decimalPart2ChangeAsString[0]);
+            decimalPart2Change = Number.parseInt(decimalPart2ChangeAsString);
 
-            if (parseInt(decimalPart[decimalPlacesCount]) > 5 ||
+            if (Number.parseInt(decimalPart[decimalPlacesCount]) > 5
                 // according IBGE resolution number 886/66
-                (parseInt(decimalPart[decimalPlacesCount]) == 5 &&
-                    (nextNeighborsOfRight > 0 ||
-                        parseInt(decimalPart[decimalPlacesCount - 1]).isOdd()))
+                || (Number.parseInt(decimalPart[decimalPlacesCount]) === 5
+                    && (nextNeighborsOfRight > 0
+                        || Number.parseInt(decimalPart[decimalPlacesCount - 1]).isOdd()
+                        )
+                )
             ) {
                 decimalPart2Change += 1;
 
-                decimalFirstDigit = parseInt(`${decimalPart2Change}`[0]);
+                decimalFirstDigit = Number.parseInt(`${decimalPart2Change}`[0]);
 
                 if (decimalPart2ChangeAsString.length >
                     `${decimalPart2Change}`.length
                 ) {
                     zerosCount = decimalPart2ChangeAsString.length -
                         `${decimalPart2Change}`.length;
-                    zeros = decimalPart2ChangeAsString.slice(0, zerosCount);
+                    zeros = decimalPart2ChangeAsString.slice(0, zerosCount as number);
                 }
 
                 if (!zerosCount && decimalFirstDigit < oldDecimalFirstDigit) {
@@ -131,4 +134,4 @@ Number.prototype.round = function (decimalPlacesCount: number = 0): number {
     }
 
     return this;
-}
+};
