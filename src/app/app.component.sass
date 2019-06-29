@@ -8,26 +8,29 @@ app-root
     section
       padding: 25px
 
-    ::ng-deep app-donut-chart
-      svg
+    ::ng-deep
 
-        circle
-          &.yellow
-            stroke: #ffcd40
+      lib-donut-chart
 
-          &.green
-            stroke: #0f9d58
+        svg
 
-          &.red
-            stroke: #db4437
+          circle
+            &.yellow
+              stroke: #ffcd40
 
-          &.outer-circumference,
-          &.inner-circumference
-            stroke: white
+            &.green
+              stroke: #0f9d58
 
-          &.inner-circumference
-            fill: #4285f4
+            &.red
+              stroke: #db4437
 
-        path
-          &.sector-border
-            stroke: white
+            &.outer-circumference,
+            &.inner-circumference
+              stroke: white
+
+            &.inner-circumference
+              fill: #4285f4
+
+          path
+            &.sector-border
+              stroke: white
