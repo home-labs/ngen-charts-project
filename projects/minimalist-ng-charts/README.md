@@ -28,7 +28,7 @@ export class MyModule() { }
 ### Donut
 
 ```html
-<app-donut-chart
+<lib-donut-chart
   [radius]="'<value><unity>'"
   [borderWidth]="'<value><unity>'"
   [sectors]="[
@@ -47,6 +47,6 @@ export class MyModule() { }
 	width: '<value><unity>',
 	bindOn: ['sectors', 'outer', 'inner']
   }"
-></app-donut-chart>
+></lib-donut-chart>
 ```
 
