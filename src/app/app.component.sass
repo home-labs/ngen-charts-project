@@ -10,21 +10,24 @@ app-root
 
     ::ng-deep app-donut-chart
       svg
-        transform: rotate(90deg)
 
         circle
+          &.yellow
+            stroke: #ffcd40
+
           &.green
             stroke: #0f9d58
 
           &.red
             stroke: #db4437
 
-          &.yellow
-            stroke: #ffcd40
-
           &.outer-circumference,
-          &.inner-circumferencer
+          &.inner-circumference
             stroke: white
 
           &.inner-circumference
             fill: #4285f4
+
+        path
+          &.sector-border
+            stroke: white

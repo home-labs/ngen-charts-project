@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import * as Components from './components';
+import { DonutChartComponent } from './components/donut-chart/component';
 
 
 @NgModule({
@@ -9,10 +9,10 @@ import * as Components from './components';
         BrowserModule
     ],
     declarations: [
-        Components.DonutChartComponent
+        DonutChartComponent
     ],
     exports: [
-        Components.DonutChartComponent
+        DonutChartComponent
     ]
 })
 export class MinimalistNgChartsModule { }

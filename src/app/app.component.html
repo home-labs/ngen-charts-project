@@ -1,7 +1,7 @@
 <app-donut-chart
   [strokeSettings]="{
-    width: '1px',
-    bindOn: ['outer', 'sectors']
+    width: '2px',
+    bindOn: ['sectors', 'outer', 'inner']
   }"
   [radius]="'90px'"
   [borderWidth]="'30px'"
@@ -9,19 +9,21 @@
     {
       value: 30,
       ngClass: {
+        yellow: true
+      }
+    }
+    ,
+    {
+      value: 30,
+      ngClass: {
         green: true
       }
     }
-    ,{
+    ,
+    {
       value: 30,
       ngClass: {
         red: true
-      }
-    }
-    ,{
-      value: 30,
-      ngClass: {
-        yellow: true
       }
     }
   ]"

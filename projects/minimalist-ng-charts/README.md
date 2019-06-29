@@ -29,8 +29,8 @@ export class MyModule() { }
 
 ```html
 <app-donut-chart
-  [ray]="'<value><unity>'"
-  [strokeWidth]="'<value><unity>'"
+  [radius]="'<value><unity>'"
+  [borderWidth]="'<value><unity>'"
   [sectors]="[
     {
       value: 9,
@@ -43,6 +43,10 @@ export class MyModule() { }
       value: 3
     }
   ]"
+  [strokeSettings]="{
+	width: '<value><unity>',
+	bindOn: ['sectors', 'outer', 'inner']
+  }"
 ></app-donut-chart>
 ```
 

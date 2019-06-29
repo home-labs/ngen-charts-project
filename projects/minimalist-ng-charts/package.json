@@ -1,9 +1,8 @@
 {
   "name": "minimalist-ng-charts",
-  "version": "2.0.0-rc.4",
+  "version": "3.0.0-rc.4",
   "peerDependencies": {
     "@angular/common": ">=4.0.0",
-    "@angular/core": ">=4.0.0",
-    "ng-mats-number": ">=1.0.0-rc.3"
+    "@angular/core": ">=4.0.0"
   }
 }

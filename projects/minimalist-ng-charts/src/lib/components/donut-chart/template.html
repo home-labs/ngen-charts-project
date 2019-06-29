@@ -7,36 +7,38 @@
   <circle
     *ngFor="let sector of sectorsData"
     class="sector"
-    [attr.r]="calculatedRadius"
+    [ngClass]="sector?.ngClass"
     [attr.cx]="radius"
     [attr.cy]="radius"
     [attr.stroke-width]="borderWidth"
+    [attr.r]="calculatedRadius"
     [attr.stroke-dasharray]="[sector.length, circumferenceLength]"
     [attr.stroke-dashoffset]="-sector.offset"
-    [ngClass]="sector?.ngClass"
   />
 
   <circle
     *ngIf="strokeSettings.bindOn.includes('outer')"
     class="outer-circumference"
-    [attr.r]="calculatedOuterCircumferenceRadius"
-    [attr.stroke-width]="strokeSettings.width"
     [attr.cx]="radius"
     [attr.cy]="radius"
+    [attr.stroke-width]="strokeSettings.width"
+    [attr.r]="calculatedOuterCircumferenceRadius"
   />
 
+  <path
+    *ngFor="let sectorBorder of sectorBorders"
+    class="sector-border"
+    [attr.stroke-width]="strokeSettings.width"
+    [attr.d]="sectorBorder.d"
+  />
+
+  <!-- cx and cy are x and y axis of a center point -->
   <circle
     class="inner-circumference"
-    [attr.r]="calculatedInnerCircumferenceRadius"
-    [attr.stroke-width]="innerCircumferenceStroke"
     [attr.cx]="radius"
     [attr.cy]="radius"
+    [attr.stroke-width]="innerCircumferenceStroke"
+    [attr.r]="calculatedInnerCircumferenceRadius"
   />
-
-  <!-- <path *ngFor="let border of borders"
-    class="sector-border"
-    [attr.d]=""
-    [attr.stroke-width]=""
-  /> -->
 
 </svg>
