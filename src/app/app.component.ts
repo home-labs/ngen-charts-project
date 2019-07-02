@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-    total: number = 12;
+    total: Number = 12;
 
 }

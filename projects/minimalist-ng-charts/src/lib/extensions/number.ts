@@ -10,38 +10,6 @@ declare interface Number {
 
 }
 
-// 360 -- 100 -- 500
-// x   -- y%  -- 50
-
-// os valores informados não estarão em ângulo, mas representarão parte de um todo. O todo é 1, 100, ou, em ângulo de uma circunferência,
-// 360
-
-// 360 -- 500
-// x   -- 50
-
-// this = 500
-// 500x = 360 * 50 -> x = (50 * 360)/500 -> x = 36°
-
-// usando porcentagem como meio
-// 100 -- 500
-// y%  -- 50
-// 500y = 5000 -> y (100 * 50)/500  -> y = 5000/500 -> y = 10%
-
-// 360 -- 100
-// x   -- 10%
-
-// 100x = 3600 -> x = 3600 / 100 -> x = 36°
-
-
-// this = 5700
-// (570 * 100) / 5700
-// 10
-
-// this = 100
-// (10 * 5700) / 100
-// 570
-
-
 Number.prototype.calculatesProportionalPartTo = function (value: number, oneHundredPercentEquivalence: number = 100): number {
 
     return (value * oneHundredPercentEquivalence) / this;

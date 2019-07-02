@@ -13,7 +13,7 @@ import { SectorBorder } from '../../sector-border';
 
 
 @Component({
-    selector: 'app-donut-chart',
+    selector: 'lib-donut-chart',
     templateUrl: './template.html',
     styleUrls: ['./style.sass']
 })
@@ -61,16 +61,16 @@ export class DonutChartComponent implements OnInit {
         this.numericInputStrokeWidth = parseFloat(this.strokeSettings.width);
 
         let
-            unity: string = this.extractsUnity(this.radius),
-            lastOffset: number = 0,
-            lastLength: number = 0,
-            currentAnglePosition: number = 0,
+            lastOffset: Number = 0,
+            lastLength: Number = 0,
             calculatedDiameter: number;
 
         const
+            currentAnglePosition: Number = 0,
+            unity: string = this.extractsUnity(this.radius),
             diameter: number = this.numericInputRadius * 2,
             numericInputBorderWidth: number = parseFloat(this.borderWidth),
-            circumferenceAngle: number = 360;
+            circumferenceAngle: Number = 360;
 
         this.diameter = `${diameter}${unity}`;
 
@@ -122,15 +122,15 @@ export class DonutChartComponent implements OnInit {
                     proportionalAngle: number = circumferenceAngle
                         .calculatesValueToProportionalPart(enteredSector.value, this.sum),
                     adjacentLegLength: number = this.numericInputRadius +
-                        (Math.cos((currentAnglePosition * Math.PI) / 180) *
+                        (Math.cos((currentAnglePosition as number * Math.PI) / 180) *
                             (this.numericInputRadius -
                                 this.numericInputStrokeWidth)),
                     oppositeLegLength: number = this.numericInputRadius +
-                        (Math.sin((currentAnglePosition * Math.PI) / 180) *
+                        (Math.sin((currentAnglePosition as number * Math.PI) / 180) *
                             (this.numericInputRadius -
                                 this.numericInputStrokeWidth));
 
-                currentAnglePosition += proportionalAngle;
+                (currentAnglePosition as number) += proportionalAngle;
 
                 if (enteredSector.hasOwnProperty('ngClass')) {
                     sector.ngClass = enteredSector.ngClass;
@@ -144,7 +144,7 @@ export class DonutChartComponent implements OnInit {
                     sector.length = this.circumferenceLength;
                 }
 
-                sector.offset = lastLength + lastOffset;
+                sector.offset = (lastLength as number) + (lastOffset as number);
 
                 this.sectorsData.push(sector);
 
