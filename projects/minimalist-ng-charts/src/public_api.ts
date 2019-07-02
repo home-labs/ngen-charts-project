@@ -1,4 +1,1 @@
-// import * as MinimalistNgChart from './lib';
-// export { MinimalistNgChart };
-
-export { MinimalistNgChartsModule } from './lib/module';
+export * from './lib/module';
