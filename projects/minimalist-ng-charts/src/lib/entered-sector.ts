@@ -1,6 +1,7 @@
-export declare interface EnteredSector {
+export interface EnteredSector {
 
     value: number;
+
     ngClass: Object;
 
 }

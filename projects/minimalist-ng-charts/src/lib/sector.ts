@@ -1,7 +1,9 @@
-export declare interface Sector {
+export interface Sector {
 
     ngClass?: Object;
+
     length?: number;
+
     offset?: number;
 
 }

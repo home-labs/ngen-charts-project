@@ -1,5 +1,5 @@
-export declare interface SectorBorder {
+export interface SectorBorder {
 
-    d?: string;
+    d: string;
 
 }
