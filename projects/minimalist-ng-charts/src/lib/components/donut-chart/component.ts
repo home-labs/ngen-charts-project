@@ -15,7 +15,7 @@ import { SectorBorder } from '../../sector-border';
 @Component({
     selector: 'lib-donut-chart',
     templateUrl: './template.html',
-    styleUrls: ['./style.sass']
+    styleUrls: ['./style.styl']
 })
 export class DonutChartComponent implements OnInit {
 
@@ -175,7 +175,7 @@ export class DonutChartComponent implements OnInit {
             pattern: RegExp = /[a-z]+/,
             match = value.match(pattern);
 
-        return match[0]
+        return match[0];
     }
 
 }

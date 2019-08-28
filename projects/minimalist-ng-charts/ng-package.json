@@ -3,6 +3,6 @@
   "dest": "../../dist/minimalist-ng-charts",
   "deleteDestPath": false,
   "lib": {
-    "entryFile": "src/public-api.ts"
+    "entryFile": "index.ts"
   }
 }
