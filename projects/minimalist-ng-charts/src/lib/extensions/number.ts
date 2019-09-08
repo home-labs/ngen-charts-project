@@ -1,12 +1,19 @@
-declare interface Number {
+export { };
 
-    calculatesProportionalPartTo(value: number, oneHundredPercentEquivalence?: number): number;
 
-    calculatesValueToProportionalPart(value: number, oneHundredPercentEquivalence?: number): number;
+declare global {
 
-    isOdd(): number;
+    export interface Number {
 
-    round(decimalPlacesCount?: number): number;
+        calculatesProportionalPartTo(value: number, oneHundredPercentEquivalence?: number): number;
+
+        calculatesValueToProportionalPart(value: number, oneHundredPercentEquivalence?: number): number;
+
+        round(decimalPlacesCount?: number): number;
+
+        isOdd(): boolean;
+
+    }
 
 }
 
@@ -16,33 +23,41 @@ Number.prototype.calculatesProportionalPartTo = function (value: number, oneHund
 
 };
 
-Number.prototype.calculatesValueToProportionalPart = function (value: number, oneHundredPercentEquivalence: number = 100): number {
+Number.prototype.calculatesValueToProportionalPart = function(value: number, oneHundredPercentEquivalence: number = 100): number {
 
     return (value * this) / oneHundredPercentEquivalence;
 
 };
 
-Number.prototype.isOdd = function (): number {
+Number.prototype.isOdd = function (): boolean {
 
-    return this % 2;
+    return (this % 2) !== 0;
 
 };
 
 Number.prototype.round = function (decimalPlacesCount: number = 0): number {
 
-    let
-        parts: Array<string>,
-        integerPart: number,
-        decimalPart: string,
-        nextNeighborsOfRight: number,
-        decimalPart2Change: number,
-        decimalPart2ChangeAsString: string,
-        oldDecimalFirstDigit: number,
-        decimalFirstDigit: number,
-        result: string,
-        zerosCount: Number = 0,
-        zeros: String = ''
-    ;
+    let parts: string[];
+
+    let integerPart: number;
+
+    let decimalPart: string;
+
+    let nextNeighborsOfRight: number;
+
+    let decimalPart2Change: number;
+
+    let decimalPart2ChangeAsString: string;
+
+    let oldDecimalFirstDigit: number;
+
+    let decimalFirstDigit: number;
+
+    let result: string;
+
+    let zerosCount = 0;
+
+    let zeros = ``;
 
     if (!decimalPlacesCount) {
         return Math.round(this);
@@ -51,30 +66,28 @@ Number.prototype.round = function (decimalPlacesCount: number = 0): number {
     parts = `${this}`.split('.');
 
     if (parts.length === 2) {
-        integerPart = Number.parseInt(parts[0]);
+        integerPart = parseInt(parts[0], 10);
         decimalPart = parts[1];
 
         if (decimalPlacesCount < decimalPart.length) {
 
-            nextNeighborsOfRight = Number.parseInt(decimalPart
-                .slice(decimalPlacesCount + 1, decimalPart.length) || '0');
+            nextNeighborsOfRight = parseInt(decimalPart
+                .slice(decimalPlacesCount + 1, decimalPart.length) || '0', 10);
 
             decimalPart2ChangeAsString = decimalPart
                 .slice(0, decimalPlacesCount);
-            oldDecimalFirstDigit = Number.parseInt(decimalPart2ChangeAsString[0]);
-            decimalPart2Change = Number.parseInt(decimalPart2ChangeAsString);
+            oldDecimalFirstDigit = parseInt(decimalPart2ChangeAsString[0], 10);
+            decimalPart2Change = parseInt(decimalPart2ChangeAsString, 10);
 
-            if (Number.parseInt(decimalPart[decimalPlacesCount]) > 5
+            if (parseInt(decimalPart[decimalPlacesCount], 10) > 5 ||
                 // according IBGE resolution number 886/66
-                || (Number.parseInt(decimalPart[decimalPlacesCount]) === 5
-                    && (nextNeighborsOfRight > 0
-                        || Number.parseInt(decimalPart[decimalPlacesCount - 1]).isOdd()
-                        )
-                )
+                (parseInt(decimalPart[decimalPlacesCount], 10) === 5 &&
+                    (nextNeighborsOfRight > 0 ||
+                        parseInt(decimalPart[decimalPlacesCount - 1], 10).isOdd()))
             ) {
                 decimalPart2Change += 1;
 
-                decimalFirstDigit = Number.parseInt(`${decimalPart2Change}`[0]);
+                decimalFirstDigit = parseInt(`${decimalPart2Change}`[0], 10);
 
                 if (decimalPart2ChangeAsString.length >
                     `${decimalPart2Change}`.length

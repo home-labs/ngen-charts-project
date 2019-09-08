@@ -32,16 +32,25 @@ export class DonutChartComponent implements OnInit {
     sectors: Array<EnteredSector>;
 
     diameter: string;
+
     sectorsData: Array<Sector>;
+
     calculatedRadius: string;
+
     circumferenceLength: number;
+
     calculatedOuterCircumferenceRadius: string;
+
     calculatedInnerCircumferenceRadius: string;
+
     innerCircumferenceStroke: string;
+
     sectorBorders: Array<SectorBorder>;
 
     private numericInputRadius: number;
+
     private numericInputStrokeWidth: number;
+
     private sum: number;
 
     constructor() {
@@ -56,21 +65,24 @@ export class DonutChartComponent implements OnInit {
     }
 
     ngOnInit() {
-
         this.numericInputRadius = parseFloat(this.radius);
         this.numericInputStrokeWidth = parseFloat(this.strokeSettings.width);
 
-        let
-            lastOffset: Number = 0,
-            lastLength: Number = 0,
-            calculatedDiameter: number;
+        let lastOffset = 0;
 
-        const
-            currentAnglePosition: Number = 0,
-            unity: string = this.extractsUnity(this.radius),
-            diameter: number = this.numericInputRadius * 2,
-            numericInputBorderWidth: number = parseFloat(this.borderWidth),
-            circumferenceAngle: Number = 360;
+        let lastLength = 0;
+
+        let calculatedDiameter: number;
+
+        const currentAnglePosition = 0;
+
+        const unity: string = this.extractsUnity(this.radius);
+
+        const diameter: number = this.numericInputRadius * 2;
+
+        const numericInputBorderWidth: number = parseFloat(this.borderWidth);
+
+        const circumferenceAngle = 360;
 
         this.diameter = `${diameter}${unity}`;
 
@@ -117,15 +129,14 @@ export class DonutChartComponent implements OnInit {
         this.sectors.forEach(
             (enteredSector: EnteredSector) => {
 
-                const
-                    sector: Sector = {},
-                    proportionalAngle: number = circumferenceAngle
-                        .calculatesValueToProportionalPart(enteredSector.value, this.sum),
-                    adjacentLegLength: number = this.numericInputRadius +
-                        (Math.cos((currentAnglePosition as number * Math.PI) / 180) *
-                            (this.numericInputRadius -
-                                this.numericInputStrokeWidth)),
-                    oppositeLegLength: number = this.numericInputRadius +
+                const sector: Sector = {};
+
+                const proportionalAngle: number = circumferenceAngle.calculatesValueToProportionalPart(enteredSector.value, this.sum);
+
+                const adjacentLegLength: number = this.numericInputRadius + (Math.cos((currentAnglePosition as number * Math.PI) / 180)
+                    * (this.numericInputRadius - this.numericInputStrokeWidth));
+
+                const oppositeLegLength: number = this.numericInputRadius +
                         (Math.sin((currentAnglePosition as number * Math.PI) / 180) *
                             (this.numericInputRadius -
                                 this.numericInputStrokeWidth));
@@ -136,9 +147,7 @@ export class DonutChartComponent implements OnInit {
                     sector.ngClass = enteredSector.ngClass;
                 }
 
-                sector.length = this.circumferenceLength
-                    .calculatesValueToProportionalPart(enteredSector.value,
-                        this.sum).round(4);
+                sector.length = this.circumferenceLength.calculatesValueToProportionalPart(enteredSector.value, this.sum).round(4);
 
                 if (sector.length > this.circumferenceLength) {
                     sector.length = this.circumferenceLength;
@@ -171,9 +180,9 @@ export class DonutChartComponent implements OnInit {
     }
 
     private extractsUnity(value: string = 'px'): string {
-        const
-            pattern: RegExp = /[a-z]+/,
-            match = value.match(pattern);
+        const pattern: RegExp = /[a-z]+/;
+
+        const match = value.match(pattern);
 
         return match[0];
     }
