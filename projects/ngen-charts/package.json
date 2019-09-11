@@ -1,5 +1,5 @@
 {
-  "name": "@rplaurindo/minimalist-ng-charts",
+  "name": "@rplaurindo/ngen-charts",
   "version": "1.0.0-rc.1",
   "peerDependencies": {
     "@angular/common": ">= 5",

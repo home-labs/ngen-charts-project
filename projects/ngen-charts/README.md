@@ -1,4 +1,4 @@
-# MinimalistNgCharts
+# NGenCharts
 
 ## Requirements
 
@@ -12,14 +12,14 @@
 
 ## Usage
 
-Include the module into ```imports``` metadata key of ```NgModule``` decorator of your application importing ```MinimalistNgChartsModule``` from ```@rplaurindo/minimalist-ng-charts```, like that.
+Include the module into ```imports``` metadata key of ```NgModule``` decorator of your application importing ```NGenChartsModule``` from ```@rplaurindo/minimalist-ng-charts```, like that.
 
 ```typescript
-import { MinimalistNgChartsModule } from '@rplaurindo/minimalist-ng-charts';
+import { NGenChartsModule } from '@rplaurindo/minimalist-ng-charts';
 
 @NgModule({
     imports: [
-        MinimalistNgChartsModule
+        NGenChartsModule
     ]
 })
 export class MyModule() { }

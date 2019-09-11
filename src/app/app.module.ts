@@ -3,13 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-import { MinimalistNgChartsModule } from '@rplaurindo/minimalist-ng-charts';
+import { NGenChartsModule } from '@rplaurindo/ngen-charts';
 
 
 @NgModule({
     imports: [
         BrowserModule,
-        MinimalistNgChartsModule
+        NGenChartsModule
     ],
     declarations: [
         AppComponent

@@ -15,4 +15,4 @@ import { DonutChartComponent } from './components/donut-chart/component';
         DonutChartComponent
     ]
 })
-export class MinimalistNgChartsModule { }
+export class NGenChartsModule { }

@@ -20,11 +20,11 @@
       "dom"
     ],
     "paths": {
-      "@rplaurindo/minimalist-ng-charts": [
-        "dist/@rplaurindo/minimalist-ng-charts"
+      "@rplaurindo/ngen-charts": [
+        "dist/@rplaurindo/ngen-charts"
       ],
-      "@rplaurindo/minimalist-ng-charts/*": [
-        "dist/@rplaurindo/minimalist-ng-charts/*"
+      "@rplaurindo/ngen-charts/*": [
+        "dist/@rplaurindo/ngen-charts/*"
       ]
     }
   },
