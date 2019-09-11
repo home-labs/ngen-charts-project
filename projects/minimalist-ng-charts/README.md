@@ -25,7 +25,7 @@ import { MinimalistNgChartsModule } from '@rplaurindo/minimalist-ng-charts';
 export class MyModule() { }
 ```
 
-So adds ```"node_modules/@rplaurindo/mathrix.js/extensions/number.js"```, at ```projects.<your-project-name>.architect.build.options.scripts``` of ```angular.json``` or ```.angular-cli.json``` corresponding.
+So adds ```"node_modules/@rplaurindo/mathrix.js/extensions/number.js"```, at ```projects.<your-project-name>.architect.build.options.scripts``` of ```angular.json``` or ```"../node_modules/@rplaurindo/mathrix.js/extensions/number.js"``` at ```apps.scripts``` of ```.angular-cli.json```.
 
 ## Charts
 
