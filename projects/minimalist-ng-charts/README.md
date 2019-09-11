@@ -2,7 +2,9 @@
 
 ## Requirements
 
->- Angular 5 or higher.
+>- @angular/core and @angular/common 5 or higher;
+>- @rplaurindo/mathrix.ts;
+>- @rplaurindo/mathrix.js.
 
 ## Installing
 
@@ -22,6 +24,8 @@ import { MinimalistNgChartsModule } from '@rplaurindo/minimalist-ng-charts';
 })
 export class MyModule() { }
 ```
+
+So adds ```"node_modules/@rplaurindo/mathrix.js/extensions/number.js"```, at ```projects.<your-project-name>.architect.build.options.scripts``` of ```angular.json``` or ```.angular-cli.json``` corresponding.
 
 ## Charts
 
