@@ -4,6 +4,7 @@
   "peerDependencies": {
     "@angular/common": ">= 5",
     "@angular/core": ">= 5",
-    "@rplaurindo/mathrix.ts:": "^1.0.0 || ^1.0.0-rc.3"
+    "@rplaurindo/mathrix.js": "^1.0.0 || ^1.0.0-rc.x",
+    "@rplaurindo/mathrix.ts": "^1.0.0 || ^1.0.0-rc.x"
   }
 }
