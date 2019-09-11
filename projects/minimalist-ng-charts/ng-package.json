@@ -1,7 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/minimalist-ng-charts",
-  "deleteDestPath": false,
+  "dest": "../../dist/@rplaurindo/minimalist-ng-charts",
   "lib": {
     "entryFile": "index.ts"
   }

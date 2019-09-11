@@ -30,7 +30,9 @@
             "styles": [
               "src/styles.styl"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@rplaurindo/mathrix.js/extensions/number.js"
+            ]
           },
           "configurations": {
             "production": {

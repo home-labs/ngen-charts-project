@@ -3,14 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-import { MinimalistNgChartsModule } from 'minimalist-ng-charts';
-// import { MinimalistNgChartsModule } from 'projects/minimalist-ng-charts/src/public_api';
+import { MinimalistNgChartsModule } from '@rplaurindo/minimalist-ng-charts';
 
 
 @NgModule({
     imports: [
         BrowserModule,
-
         MinimalistNgChartsModule
     ],
     declarations: [

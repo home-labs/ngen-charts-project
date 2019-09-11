@@ -4,7 +4,7 @@ import {
     OnInit
 } from '@angular/core';
 
-import '../../extensions/number';
+import '@rplaurindo/mathrix.ts/extensions/number';
 
 import { StrokeSettings } from '../../stroke-settings';
 import { EnteredSector } from '../../entered-sector';
