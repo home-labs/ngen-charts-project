@@ -6,14 +6,14 @@
 
 ## Installing
 
-	$ npm i minimalist-ng-charts --save
+	$ npm i @rplaurindo/minimalist-ng-charts --save
 
 ## Usage
 
-Include the module into ```imports``` metadata key of ```NgModule``` decorator of your application importing ```MinimalistNgChartsModule``` from ```minimalist-ng-charts```, like that.
+Include the module into ```imports``` metadata key of ```NgModule``` decorator of your application importing ```MinimalistNgChartsModule``` from ```@rplaurindo/minimalist-ng-charts```, like that.
 
 ```typescript
-import { MinimalistNgChartsModule } from 'minimalist-ng-charts';
+import { MinimalistNgChartsModule } from '@rplaurindo/minimalist-ng-charts';
 
 @NgModule({
     imports: [
