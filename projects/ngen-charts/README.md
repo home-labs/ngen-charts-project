@@ -3,8 +3,7 @@
 ## Requirements
 
 >- @angular/core and @angular/common 5 or higher;
->- @rplaurindo/mathrix.ts;
->- @rplaurindo/mathrix.js.
+>- @rplaurindo/mathrix.ts 1 or higher.
 
 ## Installing
 
@@ -25,9 +24,7 @@ import { NGenChartsModule } from '@rplaurindo/ngen-charts';
 export class MyModule() { }
 ```
 
-So adds ```"node_modules/@rplaurindo/mathrix.js/extensions/number.js"```, at ```projects.<your-project-name>.architect.build.options.scripts``` of ```angular.json``` or ```"../node_modules/@rplaurindo/mathrix.js/extensions/number.js"``` at ```apps.scripts``` of ```.angular-cli.json```.
-
-## Charts
+## Usage
 
 ### Donut
 
