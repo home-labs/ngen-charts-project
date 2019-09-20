@@ -31,7 +31,7 @@
               "src/styles.styl"
             ],
             "scripts": [
-              "node_modules/@rplaurindo/mathrix.js/extensions/number.js"
+
             ]
           },
           "configurations": {

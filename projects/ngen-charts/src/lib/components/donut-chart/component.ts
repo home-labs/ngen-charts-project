@@ -4,12 +4,12 @@ import {
     OnInit
 } from '@angular/core';
 
-import '@rplaurindo/mathrix.ts/extensions/number';
+const extensionNumberPromise = import('@rplaurindo/mathrix.ts/extensions/number');
 
-import { StrokeSettings } from '../../stroke-settings';
-import { EnteredSector } from '../../entered-sector';
-import { Sector } from '../../sector';
-import { SectorBorder } from '../../sector-border';
+import { IStrokeSettings } from '../../i-stroke-settings';
+import { IEnteredSector } from '../../i-entered-sector';
+import { ISector } from '../../i-sector';
+import { ISectorBorder } from '../../i-sector-border';
 
 
 @Component({
@@ -26,14 +26,14 @@ export class DonutChartComponent implements OnInit {
     borderWidth: string;
 
     @Input()
-    strokeSettings: StrokeSettings;
+    strokeSettings: IStrokeSettings;
 
     @Input()
-    sectors: Array<EnteredSector>;
+    sectors: Array<IEnteredSector>;
 
     diameter: string;
 
-    sectorsData: Array<Sector>;
+    sectorsData: Array<ISector>;
 
     calculatedRadius: string;
 
@@ -45,7 +45,7 @@ export class DonutChartComponent implements OnInit {
 
     innerCircumferenceStroke: string;
 
-    sectorBorders: Array<SectorBorder>;
+    sectorBorders: Array<ISectorBorder>;
 
     private numericInputRadius: number;
 
@@ -64,7 +64,9 @@ export class DonutChartComponent implements OnInit {
         this.sum = 0;
     }
 
-    ngOnInit() {
+    async ngOnInit() {
+        await extensionNumberPromise;
+
         this.numericInputRadius = parseFloat(this.radius);
         this.numericInputStrokeWidth = parseFloat(this.strokeSettings.width);
 
@@ -127,9 +129,9 @@ export class DonutChartComponent implements OnInit {
         this.calculatesSum();
 
         this.sectors.forEach(
-            (enteredSector: EnteredSector) => {
+            (enteredSector: IEnteredSector) => {
 
-                const sector: Sector = {};
+                const sector: ISector = {};
 
                 const proportionalAngle: number = circumferenceAngle.calculatesValueToProportionalPart(enteredSector.value, this.sum);
 
@@ -173,7 +175,7 @@ export class DonutChartComponent implements OnInit {
 
     private calculatesSum() {
         this.sectors.forEach(
-            (sector: EnteredSector) => {
+            (sector: IEnteredSector) => {
                 this.sum += sector.value;
             }
         );

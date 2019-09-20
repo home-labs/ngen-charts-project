@@ -1,4 +1,4 @@
-export interface StrokeSettings {
+export interface IStrokeSettings {
 
     width?: string;
 

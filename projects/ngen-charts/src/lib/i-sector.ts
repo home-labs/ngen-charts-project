@@ -1,6 +1,6 @@
-export interface Sector {
+export interface ISector {
 
-    ngClass?: Object;
+    ngClass?: object;
 
     length?: number;
 

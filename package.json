@@ -22,8 +22,7 @@
     "rxjs": "^6.0.0",
     "tslib": "^1.10.0",
     "zone.js": "^0.9.1",
-    "@rplaurindo/mathrix.ts": "^1.0.0-rc.3",
-    "@rplaurindo/mathrix.js": "^1.0.0 || ^1.0.0-rc.3"
+    "@rplaurindo/mathrix.ts": "^1.0.0 || ^1.0.0-rc.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.0",
