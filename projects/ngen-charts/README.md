@@ -2,19 +2,19 @@
 
 ## Requirements
 
->- @angular/core and @angular/common 5 or higher;
->- @rplaurindo/mathrix.ts 1 or higher.
+>- @angular/common and @angular/core 5 or higher;
+>- @actjs.on/mathrix.ts 1 or higher.
 
 ## Installing
 
-	$ npm i @rplaurindo/ngen-charts --save
+	$ npm i @actjs.on/ngen-charts --save
 
 ## Usage
 
-Include the module into ```imports``` metadata key of ```NgModule``` decorator of your application importing ```NGenChartsModule``` from ```@rplaurindo/ngen-charts```, like that.
+Include the module into `imports` metadata key of `NgModule` decorator of your application importing `NGenChartsModule` from `@actjs.on/ngen-charts`, like that.
 
 ```typescript
-import { NGenChartsModule } from '@rplaurindo/ngen-charts';
+import { NGenChartsModule } from '@actjs.on/ngen-charts';
 
 @NgModule({
     imports: [
