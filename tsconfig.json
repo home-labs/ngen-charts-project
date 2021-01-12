@@ -20,11 +20,11 @@
       "dom"
     ],
     "paths": {
-      "@rplaurindo/ngen-charts": [
-        "dist/@rplaurindo/ngen-charts"
+      "@actjs.on/ngen-charts": [
+        "dist/@actjs.on/ngen-charts"
       ],
-      "@rplaurindo/ngen-charts/*": [
-        "dist/@rplaurindo/ngen-charts/*"
+      "@actjs.on/ngen-charts/*": [
+        "dist/@actjs.on/ngen-charts/*"
       ]
     }
   },

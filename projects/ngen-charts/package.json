@@ -1,9 +1,9 @@
 {
-  "name": "@rplaurindo/ngen-charts",
-  "version": "1.0.1-rc.2",
+  "name": "@actjs.on/ngen-charts",
+  "version": "1.0.0-rc.1",
   "peerDependencies": {
     "@angular/common": ">= 5",
     "@angular/core": ">= 5",
-    "@rplaurindo/mathrix.ts": "^1.0.0 || ^1.0.0-rc.x"
+    "@actjs.on/mathrix.ts": "^1.0.0 | ^1.0.0-rc.x"
   }
 }

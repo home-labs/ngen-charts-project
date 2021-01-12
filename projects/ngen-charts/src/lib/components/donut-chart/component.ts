@@ -4,7 +4,7 @@ import {
     OnInit
 } from '@angular/core';
 
-const extensionNumberPromise = import('@rplaurindo/mathrix.ts/extensions/number');
+const extensionNumberPromise = import('@actjs.on/mathrix.ts/extensions/number');
 
 import { IStrokeSettings } from '../../i-stroke-settings';
 import { IEnteredSector } from '../../i-entered-sector';
@@ -126,14 +126,14 @@ export class DonutChartComponent implements OnInit {
         calculatedDiameter = parseFloat(this.calculatedRadius) * 2;
         this.circumferenceLength = (Math.PI * calculatedDiameter).round(4);
 
-        this.calculatesSum();
+        this.calculateSum();
 
         this.sectors.forEach(
             (enteredSector: IEnteredSector) => {
 
                 const sector: ISector = {};
 
-                const proportionalAngle: number = circumferenceAngle.calculatesValueToProportionalPart(enteredSector.value, this.sum);
+                const proportionalAngle: number = circumferenceAngle.calculateValue4ProportionalPart(enteredSector.value, this.sum);
 
                 const adjacentLegLength: number = this.numericInputRadius + (Math.cos((currentAnglePosition as number * Math.PI) / 180)
                     * (this.numericInputRadius - this.numericInputStrokeWidth));
@@ -149,7 +149,7 @@ export class DonutChartComponent implements OnInit {
                     sector.ngClass = enteredSector.ngClass;
                 }
 
-                sector.length = this.circumferenceLength.calculatesValueToProportionalPart(enteredSector.value, this.sum).round(4);
+                sector.length = this.circumferenceLength.calculateValue4ProportionalPart(enteredSector.value, this.sum).round(4);
 
                 if (sector.length > this.circumferenceLength) {
                     sector.length = this.circumferenceLength;
@@ -173,7 +173,7 @@ export class DonutChartComponent implements OnInit {
 
     }
 
-    private calculatesSum() {
+    private calculateSum() {
         this.sectors.forEach(
             (sector: IEnteredSector) => {
                 this.sum += sector.value;
