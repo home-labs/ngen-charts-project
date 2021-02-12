@@ -22,7 +22,7 @@
     "rxjs": "^6.0.0",
     "tslib": "^1.10.0",
     "zone.js": "^0.9.1",
-    "@actjs.on/mathrix.ts": "1.0.0-rc.3"
+    "@actjs.on/mathrix-ts": "1.0.0-rc.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.0",

@@ -3,7 +3,7 @@
 ## Requirements
 
 >- @angular/common and @angular/core 5 or higher;
->- @actjs.on/mathrix.ts 1 or higher.
+>- @actjs.on/mathrix-ts 1 or higher.
 
 ## Installing
 

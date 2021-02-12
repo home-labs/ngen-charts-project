@@ -4,7 +4,7 @@ import {
     OnInit
 } from '@angular/core';
 
-const extensionNumberPromise = import('@actjs.on/mathrix.ts/extensions/number');
+const extensionNumberPromise = import('@actjs.on/mathrix-ts/extensions/number');
 
 import { IStrokeSettings } from '../../i-stroke-settings';
 import { IEnteredSector } from '../../i-entered-sector';

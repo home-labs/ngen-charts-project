@@ -4,6 +4,6 @@
   "peerDependencies": {
     "@angular/common": ">= 5",
     "@angular/core": ">= 5",
-    "@actjs.on/mathrix.ts": "^1.0.0 | ^1.0.0-rc.x"
+    "@actjs.on/mathrix-ts": "^1.0.0 | ^1.0.0-rc.x"
   }
 }
