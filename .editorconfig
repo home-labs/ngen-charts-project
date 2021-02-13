@@ -8,12 +8,18 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 max_line_length = 80
 
-[*.{js,json,html,sass,haml}]
-indent_size = 2
-
-[*.{ts,php,md}]
+[*.{ts,md}]
 indent_size = 4
+
+[*.{js,json,html,styl}]
+indent_size = 2
 
 [*.{md,html}]
 max_line_length = off
 trim_trailing_whitespace = false
+
+# "@angular-devkit/build-ng-packagr": "~0.803.0",
+# "@angular/language-service": "^8.0.0",
+# "@types/jasminewd2": "~2.0.3",
+# "karma-coverage-istanbul-reporter": "^2.0.6",
+# "tsickle": ">=0.36.0"

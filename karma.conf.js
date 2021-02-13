@@ -25,9 +25,9 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, '../../coverage/ngen-charts'),
+      dir: require('path').join(__dirname, './coverage/oven-ts-project'),
       subdir: '.',
-      reports: [
+      reporters: [
         { type: 'html' },
         { type: 'text-summary' }
       ]
