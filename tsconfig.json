@@ -20,6 +20,9 @@
       "dom"
     ],
     "paths": {
+      "@actjs.on/ngen-charts": [
+        "dist/@actjs.on/ngen-charts"
+      ],
       "@actjs.on/ngen-charts/*": [
         "dist/@actjs.on/ngen-charts/*"
       ]
