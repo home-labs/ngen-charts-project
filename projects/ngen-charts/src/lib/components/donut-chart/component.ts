@@ -4,7 +4,7 @@ import {
     OnInit
 } from '@angular/core';
 
-const extensionNumberPromise = import('@actjs.on/mathrix-ts/extensions/number');
+let extensionNumberPromise = import('@actjs.on/mathrix-ts/extensions/number');
 
 import { IStrokeSettings } from '../../i-stroke-settings';
 import { IEnteredSector } from '../../i-entered-sector';
@@ -87,7 +87,7 @@ export class DonutChartComponent implements OnInit {
 
         let calculatedDiameter: number;
 
-        const currentAnglePosition = 0;
+        let currentAnglePosition = 0;
 
         const unity: string = this.extractsUnity(this.radius);
 
@@ -154,7 +154,7 @@ export class DonutChartComponent implements OnInit {
                             (this.numericInputRadius -
                                 this.numericInputStrokeWidth));
 
-                (currentAnglePosition as number) += proportionalAngle;
+                currentAnglePosition += proportionalAngle;
 
                 if (enteredSector.hasOwnProperty('ngClass')) {
                     sector.ngClass = enteredSector.ngClass;
