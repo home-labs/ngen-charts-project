@@ -1,7 +1,7 @@
 export interface IStrokeSettings {
 
-    width?: string;
+    width: string;
 
-    bindOn?: Array<string>;
+    bindOn: Array<string>;
 
 }

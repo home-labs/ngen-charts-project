@@ -1,9 +1,9 @@
 export interface ISector {
 
-    ngClass?: object;
+    ngClass: object;
 
-    length?: number;
+    length: number;
 
-    offset?: number;
+    offset: number;
 
 }

@@ -54,7 +54,15 @@ export class DonutChartComponent implements OnInit {
     private sum: number;
 
     constructor() {
-        this.strokeSettings = {};
+        this.radius = '';
+        this.borderWidth = '';
+        this.sectors = [];
+        this.diameter = '';
+        this.calculatedRadius = '';
+        this.circumferenceLength = 0;
+        this.calculatedOuterCircumferenceRadius = '';
+
+        this.strokeSettings = {} as IStrokeSettings;
         this.sectorsData = [];
         this.sectorBorders = [];
         this.strokeSettings.bindOn = [];
@@ -62,6 +70,9 @@ export class DonutChartComponent implements OnInit {
         this.innerCircumferenceStroke = '0px';
         this.calculatedInnerCircumferenceRadius = '0px';
         this.sum = 0;
+
+        this.numericInputRadius = 0;
+        this.numericInputStrokeWidth = 0;
     }
 
     async ngOnInit() {
@@ -131,7 +142,7 @@ export class DonutChartComponent implements OnInit {
         this.sectors.forEach(
             (enteredSector: IEnteredSector) => {
 
-                const sector: ISector = {};
+                const sector: ISector = {} as ISector;
 
                 const proportionalAngle: number = circumferenceAngle.calculateValue4ProportionalPart(enteredSector.value, this.sum);
 
@@ -184,9 +195,14 @@ export class DonutChartComponent implements OnInit {
     private extractsUnity(value: string = 'px'): string {
         const pattern: RegExp = /[a-z]+/;
 
-        const match = value.match(pattern);
+        const match: RegExpMatchArray | null = value.match(pattern);
 
-        return match[0];
+        if (match) {
+            return match[0];
+        }
+
+        return '';
+
     }
 
 }
