@@ -1,3 +1,1 @@
-export * from './src/lib/module';
-
-export * from './src/lib/components/index';
+export * from './src/ngen-charts';
