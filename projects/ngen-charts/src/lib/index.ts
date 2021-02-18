@@ -1,3 +1,3 @@
-export { NGenChartsModule } from './module';
-
 export * from './components/index';
+
+export { NGenChartsModule } from './module';
