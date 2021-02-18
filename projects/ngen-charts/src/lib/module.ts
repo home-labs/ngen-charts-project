@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { DonutChartComponent } from './components/donut-chart/component';
+import { DonutChartComponent } from './components/index';
 
 
 @NgModule({
