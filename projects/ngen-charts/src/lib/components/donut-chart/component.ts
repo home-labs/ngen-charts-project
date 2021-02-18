@@ -57,10 +57,10 @@ export class DonutChartComponent implements OnInit {
         this.radius = '';
         this.borderWidth = '';
         this.sectors = [];
-        this.diameter = '';
-        this.calculatedRadius = '';
+        this.diameter = '0px';
+        this.calculatedRadius = '0px';
         this.circumferenceLength = 0;
-        this.calculatedOuterCircumferenceRadius = '';
+        this.calculatedOuterCircumferenceRadius = '0px';
 
         this.strokeSettings = {} as IStrokeSettings;
         this.sectorsData = [];
@@ -79,7 +79,7 @@ export class DonutChartComponent implements OnInit {
         await extensionNumberPromise;
 
         this.numericInputRadius = parseFloat(this.radius);
-        this.numericInputStrokeWidth = parseFloat(this.strokeSettings.width);
+        this.numericInputStrokeWidth = parseFloat(this.strokeSettings.width as string);
 
         let lastOffset = 0;
 
@@ -113,9 +113,8 @@ export class DonutChartComponent implements OnInit {
                 )
             ) / 2}${unity}`;
 
-
-        if (this.strokeSettings.bindOn.includes('inner')) {
-            this.innerCircumferenceStroke = this.strokeSettings.width;
+        if ((this.strokeSettings.bindOn as string[]).includes('inner')) {
+            this.innerCircumferenceStroke = this.strokeSettings.width as string;
             this.calculatedInnerCircumferenceRadius = `${
                 (
                     diameter - (
@@ -135,6 +134,7 @@ export class DonutChartComponent implements OnInit {
         }
 
         calculatedDiameter = parseFloat(this.calculatedRadius) * 2;
+
         this.circumferenceLength = (Math.PI * calculatedDiameter).round(4);
 
         this.calculateSum();
