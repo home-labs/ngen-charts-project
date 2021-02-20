@@ -54,8 +54,8 @@ export class DonutChartComponent implements OnInit {
     private sum: number;
 
     constructor() {
-        this.radius = '';
-        this.borderWidth = '';
+        this.radius = '0px';
+        this.borderWidth = '0px';
         this.sectors = [];
         this.diameter = '0px';
         this.calculatedRadius = '0px';
