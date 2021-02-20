@@ -1,1 +1,1 @@
-export * from './src/ngen-charts';
+export * from './src/index';
