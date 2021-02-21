@@ -1,3 +1,3 @@
 export * from './lib/index';
 
-export { NGenChartsModule } from './lib/module';
+export * from './lib/module';

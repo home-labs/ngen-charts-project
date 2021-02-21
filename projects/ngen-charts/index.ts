@@ -1,1 +1,1 @@
-export * from './ngen-charts';
+export * from './public-api';
