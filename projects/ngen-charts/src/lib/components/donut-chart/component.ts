@@ -26,7 +26,7 @@ export class DonutChartComponent implements OnInit {
     borderWidth: string;
 
     @Input()
-    strokeSettings: IStrokeSettings;
+    strokeSettings!: IStrokeSettings;
 
     @Input()
     sectors: Array<IEnteredSector>;
@@ -81,7 +81,7 @@ export class DonutChartComponent implements OnInit {
         await extensionNumberPromise;
 
         this.numericInputRadius = parseFloat(this.radius);
-        this.numericInputStrokeWidth = parseFloat(this.strokeSettings.width as string);
+        this.numericInputStrokeWidth = parseFloat((this.strokeSettings.width)!);
 
         let lastOffset = 0;
 
@@ -115,8 +115,8 @@ export class DonutChartComponent implements OnInit {
                 )
             ) / 2}${unity}`;
 
-        if ((this.strokeSettings.bindOn as string[]).includes('inner')) {
-            this.innerCircumferenceStroke = this.strokeSettings.width as string;
+        if (this.strokeSettings.bindOn.includes('inner')) {
+            this.innerCircumferenceStroke = (this.strokeSettings.width)!;
             this.calculatedInnerCircumferenceRadius = `${
                 (
                     diameter - (
@@ -148,11 +148,11 @@ export class DonutChartComponent implements OnInit {
 
                 const proportionalAngle: number = circumferenceAngle.calculateValue4ProportionalPart(enteredSector.value, this.sum);
 
-                const adjacentLegLength: number = this.numericInputRadius + (Math.cos((currentAnglePosition as number * Math.PI) / 180)
+                const adjacentLegLength: number = this.numericInputRadius + (Math.cos(((currentAnglePosition)! * Math.PI) / 180)
                     * (this.numericInputRadius - this.numericInputStrokeWidth));
 
                 const oppositeLegLength: number = this.numericInputRadius +
-                        (Math.sin((currentAnglePosition as number * Math.PI) / 180) *
+                        (Math.sin(((currentAnglePosition)! * Math.PI) / 180) *
                             (this.numericInputRadius -
                                 this.numericInputStrokeWidth));
 
@@ -168,7 +168,7 @@ export class DonutChartComponent implements OnInit {
                     sector.length = this.circumferenceLength;
                 }
 
-                sector.offset = (lastLength as number) + (lastOffset as number);
+                sector.offset = lastLength + lastOffset;
 
                 this.sectorsData.push(sector);
 
