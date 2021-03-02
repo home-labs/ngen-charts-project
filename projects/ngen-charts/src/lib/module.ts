@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
-import { DonutChartComponent } from './components/index';
+import { DonutChartModule } from './components/index';
 
 
 @NgModule({
     imports: [
-        BrowserModule
+
     ],
     declarations: [
-        DonutChartComponent
+
     ],
     exports: [
-        DonutChartComponent
+        DonutChartModule
     ]
 })
 export class NGenChartsModule { }
