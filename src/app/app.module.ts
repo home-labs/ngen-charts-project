@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-// import { NGenChartsModule } from '@actjs.on/ngen-charts';
-import { DonutChartModule } from 'projects/ngen-charts/public-api';
+import { DonutChartModule } from '@actjs.on/ngen-charts';
+// import { DonutChartModule } from 'projects/ngen-charts/public-api';
 
 
 @NgModule({
