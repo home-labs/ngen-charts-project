@@ -4,6 +4,7 @@ import {
     OnInit
 } from '@angular/core';
 
+// testar se é necessário, e, caso seja, se funciona, a sintaxe IIFE (() => {})() função autoexecutável para fazer as declarações, neste caso por causa da importação como Promise para ser usada numa função assíncrona
 const extensionNumberPromise = import('@actjs.on/mathrix/extensions/number');
 
 import { IStrokeSettings } from '../../i-stroke-settings';
