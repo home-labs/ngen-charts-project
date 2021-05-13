@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@actjs.on/mathrix": "1.0.0-rc.4",
     "@angular/animations": "~11.0.6",
     "@angular/common": "~11.0.6",
     "@angular/compiler": "~11.0.6",
@@ -21,8 +22,7 @@
     "@angular/router": "~11.0.6",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2",
-    "@actjs.on/mathrix-ts": "1.0.0-rc.3"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1100.6",
