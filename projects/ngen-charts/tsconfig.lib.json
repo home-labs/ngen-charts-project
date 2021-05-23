@@ -3,6 +3,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "rootDir": "./",
+    "baseUrl": "./",
     "outDir": "../../out-tsc/lib",
     "resolveJsonModule": false,
     "module": "ESNext",
