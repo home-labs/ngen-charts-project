@@ -1,3 +1,26 @@
+// mapear a raiz em path pra ver se melhora
+/// <reference path="../../../../../../node_modules/@actjs.on/mathrix/extensions/number/index.d.ts" />
+
+
+import { ESLoadingResolver } from '@actjs.on/es-loading-resolver';
+import { IESLoadingResponse } from '@actjs.on/es-loading-resolver';
+
+const esGlobalModuleResolver = new ESLoadingResolver();
+
+let resolvedDirectory: IESLoadingResponse;
+
+try {
+
+    // await fetch('')
+    resolvedDirectory = await esGlobalModuleResolver.import('@actjs.on/mathrix/extensions/number');
+
+} catch (reason: any) {
+    console.log(`\n`);
+    console.log(reason);
+    console.log(`\n`);
+}
+
+
 import {
     Component,
     Input,
@@ -5,7 +28,7 @@ import {
 } from '@angular/core';
 
 // testar se é necessário, e, caso seja, se funciona, a sintaxe IIFE (() => {})() função autoexecutável para fazer as declarações, neste caso por causa da importação como Promise para ser usada numa função assíncrona
-const extensionNumberPromise = import('@actjs.on/mathrix/extensions/number');
+// const extensionNumberPromise = import('@actjs.on/mathrix/extensions/number');
 
 import { IStrokeSettings } from '../../i-stroke-settings';
 import { IEnteredSector } from '../../i-entered-sector';
@@ -79,7 +102,7 @@ export class DonutChartComponent implements OnInit {
     }
 
     async ngOnInit() {
-        await extensionNumberPromise;
+        // await extensionNumberPromise;
 
         this.numericInputRadius = parseFloat(this.radius);
         this.numericInputStrokeWidth = parseFloat((this.strokeSettings.width)!);

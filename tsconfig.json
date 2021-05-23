@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "esModuleInterop": true,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -13,11 +14,17 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
-    "module": "es2020",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    // "module": "ES2020",
+    // "target": "ES2015",
+    "module": "ESNext",
+    "target": "ES2017",
     "lib": [
       "es2018",
-      "dom"
+      "dom",
+      "ESNext",
+      "ES2020"
     ],
     "paths": {
       "@actjs.on/ngen-charts": [
