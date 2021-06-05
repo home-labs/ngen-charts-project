@@ -2,6 +2,10 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/@actjs.on/ngen-charts",
   "lib": {
-    "entryFile": "public-api.ts"
-  }
+    "entryFile": "src/public-api.ts"
+  },
+  "allowedNonPeerDependencies": [
+    "@actjs.on/basicss",
+    "@actjs.on/mathrix"
+  ]
 }

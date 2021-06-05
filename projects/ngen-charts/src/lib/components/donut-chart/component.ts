@@ -1,25 +1,4 @@
-// mapear a raiz em path pra ver se melhora
-/// <reference path="../../../../../../node_modules/@actjs.on/mathrix/extensions/number/index.d.ts" />
-
-
-import { ESLoadingResolver } from '@actjs.on/es-loading-resolver';
-import { IESLoadingResponse } from '@actjs.on/es-loading-resolver';
-
-const esGlobalModuleResolver = new ESLoadingResolver();
-
-let resolvedDirectory: IESLoadingResponse;
-
-try {
-
-    // await fetch('')
-    resolvedDirectory = await esGlobalModuleResolver.import('@actjs.on/mathrix/extensions/number');
-
-} catch (reason: any) {
-    console.log(`\n`);
-    console.log(reason);
-    console.log(`\n`);
-}
-
+import '@actjs.on/mathrix/extensions/number';
 
 import {
     Component,
@@ -27,8 +6,6 @@ import {
     OnInit
 } from '@angular/core';
 
-// testar se é necessário, e, caso seja, se funciona, a sintaxe IIFE (() => {})() função autoexecutável para fazer as declarações, neste caso por causa da importação como Promise para ser usada numa função assíncrona
-// const extensionNumberPromise = import('@actjs.on/mathrix/extensions/number');
 
 import { IStrokeSettings } from '../../i-stroke-settings';
 import { IEnteredSector } from '../../i-entered-sector';
@@ -39,7 +16,7 @@ import { ISectorBorder } from '../../i-sector-border';
 @Component({
     selector: 'lib-donut-chart',
     templateUrl: './template.html',
-    styleUrls: ['./style.styl']
+    styleUrls: ['./style.less']
 })
 export class DonutChartComponent implements OnInit {
 
@@ -77,6 +54,8 @@ export class DonutChartComponent implements OnInit {
 
     private sum: number;
 
+    // private esLoadingResolver = new ESWebLoadingResolver();
+
     constructor() {
         this.radius = '0px';
         this.borderWidth = '0px';
@@ -102,7 +81,7 @@ export class DonutChartComponent implements OnInit {
     }
 
     async ngOnInit() {
-        // await extensionNumberPromise;
+        // await this.esLoadingResolver.import('@actjs.on/mathrix/extensions/number');
 
         this.numericInputRadius = parseFloat(this.radius);
         this.numericInputStrokeWidth = parseFloat((this.strokeSettings.width)!);
@@ -126,13 +105,11 @@ export class DonutChartComponent implements OnInit {
         this.diameter = `${diameter}${unity}`;
 
         // only half of the outer borders are considered to width and height
-        this.calculatedOuterCircumferenceRadius = `${
-            (
+        this.calculatedOuterCircumferenceRadius = `${(
                 diameter - this.numericInputStrokeWidth
             ) / 2}${unity}`;
 
-        this.calculatedRadius = `${
-            (
+        this.calculatedRadius = `${(
                 diameter - (
                     ((this.numericInputStrokeWidth - 0.1) * 2) +
                     numericInputBorderWidth
@@ -141,8 +118,7 @@ export class DonutChartComponent implements OnInit {
 
         if (this.strokeSettings.bindOn.includes('inner')) {
             this.innerCircumferenceStroke = (this.strokeSettings.width)!;
-            this.calculatedInnerCircumferenceRadius = `${
-                (
+            this.calculatedInnerCircumferenceRadius = `${(
                     diameter - (
                         // one of its own plus 2 of the outer
                         (this.numericInputStrokeWidth * 3) +
@@ -150,8 +126,7 @@ export class DonutChartComponent implements OnInit {
                     )
                 ) / 2}${unity}`;
         } else {
-            this.calculatedInnerCircumferenceRadius = `${
-                (
+            this.calculatedInnerCircumferenceRadius = `${(
                     diameter - (
                         (this.numericInputStrokeWidth * 2) +
                         ((numericInputBorderWidth - 0.1) * 2)
@@ -176,9 +151,9 @@ export class DonutChartComponent implements OnInit {
                     * (this.numericInputRadius - this.numericInputStrokeWidth));
 
                 const oppositeLegLength: number = this.numericInputRadius +
-                        (Math.sin(((currentAnglePosition)! * Math.PI) / 180) *
-                            (this.numericInputRadius -
-                                this.numericInputStrokeWidth));
+                    (Math.sin(((currentAnglePosition)! * Math.PI) / 180) *
+                        (this.numericInputRadius -
+                            this.numericInputStrokeWidth));
 
                 currentAnglePosition += proportionalAngle;
 

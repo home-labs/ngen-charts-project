@@ -34,7 +34,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.styl"
+              "src/styles.less"
             ],
             "scripts": []
           },
@@ -62,7 +62,7 @@
             },
             "development": {
               "buildOptimizer": false,
-              "optimization": false,
+              "optimization": true,
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
@@ -78,7 +78,7 @@
               "browserTarget": "ngen-charts-project:build:production"
             },
             "development": {
-              "browserTarget": "ngen-charts-project:build"
+              "browserTarget": "ngen-charts-project:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -112,7 +112,7 @@
     "ngen-charts": {
       "projectType": "library",
       "root": "projects/ngen-charts",
-      "sourceRoot": "projects/ngen-charts",
+      "sourceRoot": "projects/ngen-charts/src",
       "prefix": "lib",
       "architect": {
         "build": {

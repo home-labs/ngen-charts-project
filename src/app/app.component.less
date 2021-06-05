@@ -1,0 +1,51 @@
+app-root:host {
+
+    display: block;
+    text-align: center;
+    padding: 25px;
+
+    section {
+        padding: 25px;
+    }
+
+    ::ng-deep {
+
+        lib-donut-chart {
+
+            svg {
+
+                circle {
+
+                    &.yellow {
+                        stroke: #ffcd40;
+                    }
+
+                    &.green {
+                        stroke: #0f9d58;
+                    }
+
+                    &.red {
+                        stroke: #db4437;
+                    }
+
+                    &.outer-circumference,
+                    &.inner-circumference {
+                        stroke: white;
+                    }
+
+                    &.inner-circumference {
+                        fill: #4285f4;
+                    }
+
+                }
+
+                path {
+                    &.sector-border {
+                        stroke: white;
+                    }
+                }
+
+            }
+        }
+    }
+}

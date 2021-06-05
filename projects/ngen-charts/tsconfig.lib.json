@@ -2,36 +2,34 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": "./",
-    "baseUrl": "./",
     "outDir": "../../out-tsc/lib",
-    "resolveJsonModule": false,
-    "module": "ESNext",
     "target": "ES2020",
+    "module": "ESNext",
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "types": [],
+    "types": [
+      "webpack"
+      , "node"
+    ],
     "lib": [
       "es2018",
-      "dom",
-      "ESNext",
-      "ES2020"
+      "dom"
+      // , "ESNext"
+      // , "ES2020"
     ],
-    "paths": {
+    // "rootDir": "./",
+    // "baseUrl": "./",
+    // "resolveJsonModule": false,
+    // "paths": {
 
-    }
+    // }
   },
-  "include": [
-    "src/**/*"
-  ],
+  // "include": [
+  //   "src/**/*"
+  // ],
   "exclude": [
     "src/test.ts",
     "**/*.spec.ts"
-  ],
-  "angularCompilerOptions": {
-    "skipTemplateCodegen": true,
-    "strictMetadataEmit": true,
-    "enableResourceInlining": true
-  },
+  ]
 }

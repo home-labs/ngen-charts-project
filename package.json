@@ -12,8 +12,7 @@
   "private": true,
   "dependencies": {
     "@actjs.on/basicss": "1.0.0-rc.2",
-    "@actjs.on/es-loading-resolver": "1.0.0-rc.10",
-    "@actjs.on/mathrix": "1.0.0-rc.8",
+    "@actjs.on/mathrix": "1.0.0-rc.11",
     "@angular/animations": "~12.0.1",
     "@angular/common": "~12.0.1",
     "@angular/compiler": "~12.0.1",
