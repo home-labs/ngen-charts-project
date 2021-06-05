@@ -80,9 +80,7 @@ export class DonutChartComponent implements OnInit {
         this.strokeSettings.width = '1px';
     }
 
-    async ngOnInit() {
-        // await this.esLoadingResolver.import('@actjs.on/mathrix/extensions/number');
-
+    ngOnInit() {
         this.numericInputRadius = parseFloat(this.radius);
         this.numericInputStrokeWidth = parseFloat((this.strokeSettings.width)!);
 
