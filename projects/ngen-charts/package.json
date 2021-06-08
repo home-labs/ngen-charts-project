@@ -1,6 +1,6 @@
 {
   "name": "@actjs.on/ngen-charts",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0-rc.6",
   "peerDependencies": {
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1"
@@ -8,6 +8,6 @@
   "dependencies": {
     "tslib": "^2.1.0",
     "@actjs.on/basicss": "1.0.0-rc.2",
-    "@actjs.on/mathrix": "1.0.0-rc.10"
+    "@actjs.on/mathrix": "1.0.0-rc.11"
   }
 }
